@@ -1,3 +1,8 @@
+<?php
+    session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +21,13 @@
     <div class="container-fluid d-flex justify-content-center align-items-center" id="wip">
         <div class="text-center">
             <h1 class="text-center">WAIT INAANO PA.</h1>
+            <?php
+                                if(isset($_SESSION["login_error"])){
+                                    echo "<span> $_SESSION[login_error] </span>" ;
+                                }
+                                unset($_SESSION["login_error"])
+                            
+                            ?>
             <img src="wip.gif" alt="wip" id="wip-image">
             <div class="pt-5">
                 <a href="index.html"><button class="btn btn-warning">GO BACK</button></a>

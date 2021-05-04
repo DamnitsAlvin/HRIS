@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,12 +24,13 @@
             </div>
             <div class="col no-gutters">
                 <div class="right d-flex justify-content-center align-items-center ">
-                    <form>
+                    
+                    <form method ="POST" action="php/login.php">
                         <div class="form-group">
                             <label for="email">EMAIL</label>
                             <div class="d-flex align-items-center px-3">
                                 <i class="fa fa-user mr-3" aria-hidden="true"></i>
-                                <input type="email" class="form-control  text-light" id="email" aria-describedby="emailHelp" placeholder="ENTER YOUR EMAIL">
+                                <input type="text" class="form-control  text-light" id="username" name ="username" aria-describedby="emailHelp" placeholder="ENTER YOUR EMAIL">
                             </div>
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div><br>
@@ -33,7 +38,7 @@
                             <label for="password">PASSWORD</label>
                             <div class="d-flex align-items-center px-3">
                                 <i class="fa fa-lock mr-3" aria-hidden="true"></i>
-                                <input type="password" class="form-control text-light" id="password" aria-describedby="emailHelp" placeholder="ENTER YOUR PASSWORD">
+                                <input type="password" class="form-control text-light" id="password" name="password" aria-describedby="emailHelp" placeholder="ENTER YOUR PASSWORD">
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -42,9 +47,17 @@
                                 <label class="form-check-label" for="checkbox">Remember me</label>
                             </div>
                             <div class="forget">
-                                <a href="wip.html"><i>Forgot password?</i></a>
+                                <a href="wip.php"><i>Forgot password?</i></a>
                             </div>
                         </div> <br>
+                        <div>
+                            <?php
+                                if(isset($_SESSION["login_error"])){
+                                    echo "<span style=color:red; > $_SESSION[login_error] </span>" ;
+                                }
+                                unset($_SESSION["login_error"])
+                            
+                            ?>
                         <div class="d-flex justify-content-center">
                             <button type="submit" id="login" class="btn">LOGIN</button>
                         </div>

@@ -1,10 +1,15 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRIS | Department</title>
+    <title>HRIS | Branches</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -33,12 +38,16 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome, Lorem Ipsum
+                            Welcome,
+                            <?php
+                                echo substr(ucfirst(strtolower($_SESSION["user"])), 0 , strpos(ucfirst(strtolower($_SESSION["user"])), " "));
+                               
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="wip.html">Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="index.html">Log Out</a>
+                            <a class="dropdown-item" href="php/logout.php">Log Out</a>
                         </div>
                     </li>
                   </ul>
@@ -47,7 +56,7 @@
         </nav>
         <!-- TITLE -->
         <div class="text-center">
-            <h2 class="p-5">DEPARTMENT</h2>
+            <h2 class="p-5">Branches</h2>
         </div>
         <!-- SEARCH BAR -->
         <div class="container">
@@ -65,71 +74,76 @@
                 <table class="table table-striped table-hover text-center">
                     <thead>
                         <tr>
-                            <th>DEPARTMENT_ID</th>
-                            <th>DESCRIPTION</th>
-                            <th>DEPARTMENT_HEAD</th>
                             <th>BRANCH_ID</th>
+                            <th>BRANCH_NAME</th>
+                            <th>ADDRESS</th>
+                            <th>BRANCH_MANAGER</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>010101</td>
-                            <td>Sample description</td>
+                            <td>ALCABRANCH</td>
+                            <td>Pasay</td>
                             <td>Arvie Alcaraz</td>
-                            <td>020202</td>
                             <td>
                                 <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
                                     <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>010101</td>
-                            <td>Sample description</td>
+                            <td>ALCABRANCH</td>
+                            <td>Pasay</td>
                             <td>Arvie Alcaraz</td>
-                            <td>020202</td>
                             <td>
                                 <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
                                     <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>010101</td>
-                            <td>Sample description</td>
+                            <td>ALCABRANCH</td>
+                            <td>Pasay</td>
                             <td>Arvie Alcaraz</td>
-                            <td>020202</td>
                             <td>
                                 <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
                                     <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>010101</td>
-                            <td>Sample description</td>
+                            <td>ALCABRANCH</td>
+                            <td>Pasay</td>
                             <td>Arvie Alcaraz</td>
-                            <td>020202</td>
                             <td>
                                 <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
                                     <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>010101</td>
-                            <td>Sample description</td>
+                            <td>ALCABRANCH</td>
+                            <td>Pasay</td>
                             <td>Arvie Alcaraz</td>
-                            <td>020202</td>
                             <td>
                                 <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
                                     <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
+                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
                                 </div>
                             </td>
                         </tr>
