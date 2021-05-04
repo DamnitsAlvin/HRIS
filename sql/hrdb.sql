@@ -926,7 +926,7 @@ CREATE TABLE `tbluseraccounts` (
 
 INSERT INTO `tbluseraccounts` (`ID`, `USERID`, `FULLNAME`, `USERNAME`, `PASS`, `UROLE`, `USERPHOTO`) VALUES
 (8, '288', 'DAFFODILS GARCENIEGO', 'daff', '4277986f0240024a564bce32c8f48538dab5d180', 'HR', 'photos/STARTS-JOB-AS-PROGRAMMER.jpg'),
-(10, '2019', 'JANOBE JANOBE', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', '');
+(10, '2019', 'JANOBE JANOBE', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', ''),
 (25, "30", "ARIANNE TALAM" ,"a.tala", "secret11", "staff", "");
 
 -- --------------------------------------------------------
