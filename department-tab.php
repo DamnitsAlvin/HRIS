@@ -1,3 +1,8 @@
+<?php
+    session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +38,10 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome, Lorem Ipsum
+                            Welcome <?php
+                                echo $_SESSION["username"];
+                                //substr(ucfirst(strtolower($_SESSION["username"])), 0 , strpos(ucfirst(strtolower($_SESSION["username"])), " "));
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="wip.html">Profile</a>
@@ -65,74 +73,40 @@
                 <table class="table table-striped table-hover text-center">
                     <thead>
                         <tr>
-                            <th>DEPARTMENT_ID</th>
-                            <th>DESCRIPTION</th>
-                            <th>DEPARTMENT_HEAD</th>
-                            <th>BRANCH_ID</th>
+                            <th>DEPARTMENT ID</th>
+                            <th>DEPARTMENT NAME</th>
+                            <th>DEPARTMENT HEAD</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>010101</td>
-                            <td>Sample description</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>020202</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>Sample description</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>020202</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>Sample description</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>020202</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>Sample description</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>020202</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>Sample description</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>020202</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                </div>
-                            </td>
-                        </tr>
+                    <?php
+                        require "php/conn.php";
+                        $limit = 5;
+                        $page=1;
+                        if(isset($_GET["page"])){
+                            $page = $_GET["page"];
+                        }
+                        $rowstart = ($page-1) *$limit;
+                        $data = $conn->query("SELECT * FROM department where 1 LIMIT $rowstart, $limit"); 
+                        if(mysqli_num_rows($data)>0){
+                            while($row = mysqli_fetch_assoc($data)){
+                                echo '
+                                <tr>
+                                    <td>'.$row["DEPT_ID"].'</td>
+                                    <td>'.$row["DEPT_NAME"].'</td>
+                                    <td>'.$row["DEPT_HEAD"].'</td>
+                                    <td>
+                                        <div class="emp-tab-buttons text-center">
+                                            <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
+                                            <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px"></i> <a href="department-tab.php?user='.$row["DEPT_ID"].'">edit<a></button>
+                                        </div>
+                                    </td>
+                                 </tr>';
+                            }
+                        }
+                    ?>
+
                     </tbody>
                 </table>
             </div>
@@ -146,32 +120,25 @@
                     </div>
                     <div class="col-sm-12 col-md-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                            <ul class="pagination justify-content-end" style="margin:20px 0">
-                                <li class="paginate_button page-item previous disabled" id="example_previous">
-                                    <a href="#" aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                                </li>
-                                <li class="paginate_button page-item active">
-                                    <a href="#" aria-controls="example" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-                                </li>
-                                <li class="paginate_button page-item next" id="example_next">
-                                    <a href="#" aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-                                </li>
-                            </ul>
+                            <?php  
+
+                                $result_db = mysqli_query($conn,"SELECT COUNT(DEPT_ID) FROM department"); 
+                                $row_db = mysqli_fetch_row($result_db);  
+                                $total_records = $row_db[0];  
+                                $total_pages = ceil($total_records / $limit); 
+                                /* echo  $total_pages; */
+                                $pagLink = "<ul class='pagination justify-content-end' style='margin:20px 0'>
+                                                <li class='paginate_button page-item previous disabled' id='example_previous'>
+                                                    <a href='#'aria-controls='example' data-dt-idx='0' tabindex='0' class='page-link'>Previous</a>
+                                                </li>";  
+                                for ($i=1; $i<=$total_pages; $i++) {
+                                            $pagLink .= "<li class='paginate_button page-item active'><a class='page-link' href='department-tab.php?page=".$i."'>".$i."</a></li>";	
+                                }
+                                echo $pagLink . " <li class='paginate_button page-item next' id='example_next'>
+                                                     <a href='#' aria-controls='example' data-dt-idx='7' tabindex='0' class='page-link'>Next</a>
+                                                    </li>
+                                                </ul>";  
+                            ?>
                         </div>
                     </div>
                 </div>

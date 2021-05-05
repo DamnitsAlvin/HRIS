@@ -40,8 +40,8 @@ session_start();
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Welcome,
                             <?php
-                                echo substr(ucfirst(strtolower($_SESSION["user"])), 0 , strpos(ucfirst(strtolower($_SESSION["user"])), " "));
-                               
+                                echo $_SESSION["username"];
+                                //substr(ucfirst(strtolower($_SESSION["username"])), 0 , strpos(ucfirst(strtolower($_SESSION["username"])), " "))
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -57,18 +57,29 @@ session_start();
         <!-- TITLE -->
         <div class="text-center">
             <h2 class="p-5">Branches</h2>
+            <?php
+                if(isset($_POST["entries"])){
+                    echo $_POST["entries"];
+                }
+                else{
+                    echo "Hello world";
+                }
+            ?>
         </div>
         <!-- SEARCH BAR -->
         <div class="container">
             <div class="table-wrapper">
+                
                 <div class="d-flex">
-                    <div class="p-2">Show</div> <input type="text" class="form-control col-1 text-center">
+                    <div class="p-2">Show</div> <input type="text" name="entries" class="form-control col-1 text-center">
                     <div class="p-2">Entries</div>
                     <div class="ml-auto p-2">Search</div> <input type="text" class="form-control col-2">
-                  </div>
+                </div>
+              
             </div>
         </div>
         <!-- TABLE -->
+       
         <div class="container">
             <div class="table-wrapper">
                 <table class="table table-striped table-hover text-center">
@@ -82,71 +93,30 @@ session_start();
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>010101</td>
-                            <td>ALCABRANCH</td>
-                            <td>Pasay</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>ALCABRANCH</td>
-                            <td>Pasay</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>ALCABRANCH</td>
-                            <td>Pasay</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>ALCABRANCH</td>
-                            <td>Pasay</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>ALCABRANCH</td>
-                            <td>Pasay</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
-                                </div>
-                            </td>
-                        </tr>
+                    <?php
+                        require "php/conn.php";
+                        $data = $conn->query("SELECT * FROM division where 1"); 
+                        if(mysqli_num_rows($data)>0){
+                            while($row = mysqli_fetch_assoc($data)){
+                                $managerid = $row['DIV_MANAGER'];
+                                $managername = mysqli_fetch_assoc($conn->query("SELECT Manager_Name FROM managers where MANAGER_ID='$managerid' "));
+                                echo '
+                                <tr>
+                                    <td>'.$row['DIV_ID'].'</td>
+                                    <td>'.$row['DIV_NAME'].'</td>
+                                    <td>'.$row['LOCATION'].'Pasay</td>
+                                    <td>'.$managername['Manager_Name'].'</td>
+                                    <td>
+                                        <div class="emp-tab-buttons text-center">
+                                            <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
+                                            <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
+                                            <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
+                                        </div>
+                                    </td>
+                                </tr>';
+                            }
+                        }
+                    ?>
                     </tbody>
                 </table>
             </div>

@@ -5,14 +5,14 @@
     $password = $_POST["password"]; 
     echo $username;
 
-    $emailcheck = $conn->query("SELECT * FROM tbluseraccounts where USERNAME='$username'");
+    $emailcheck = $conn->query("SELECT * FROM users where USERNAME='$username'");
 
     if(mysqli_num_rows($emailcheck)>0){
         $row = $emailcheck->fetch_assoc();
-        $saved_pass = $row["PASS"]; 
+        $saved_pass = $row["PASSWORD"]; 
 
         if(strcmp($saved_pass, $password) == 0){
-            $_SESSION["user"] = $row["FULLNAME"];
+            $_SESSION["username"] = $row["ACC_NAME"];
             header("location: ../branches-tab.php");
         }
         else{
