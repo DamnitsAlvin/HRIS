@@ -58,12 +58,7 @@ session_start();
         <div class="text-center">
             <h2 class="p-5">Branches</h2>
             <?php
-                if(isset($_POST["entries"])){
-                    echo $_POST["entries"];
-                }
-                else{
-                    echo "Hello world";
-                }
+
             ?>
         </div>
         <!-- SEARCH BAR -->
@@ -71,15 +66,29 @@ session_start();
             <div class="table-wrapper">
                 
                 <div class="d-flex">
-                    <div class="p-2">Show</div> <input type="text" name="entries" class="form-control col-1 text-center">
-                    <div class="p-2">Entries</div>
-                    <div class="ml-auto p-2">Search</div> <input type="text" class="form-control col-2">
+                <div class="p-2">Show</div>
+                     <form method="GET" action = "">
+                        <input type="text" name="entries" class="form-control col-1 text-center"
+                        <?php 
+                            if(isset($_GET["entries"])){
+                            echo 'placeholder="'.$_GET["entries"].'"';
+                            }
+                        ?>>
+                    </form>
+        
+                    <div class="ml-auto p-2">Search</div> 
+                    <form method="GET" action="">
+                        <input type="text" class="form-control col-2" name="search"
+                        <?php 
+                            if(isset($_GET["search"])){
+                            echo 'placeholder="'.$_GET["search"].'"';
+                            }
+                        ?>>
                 </div>
               
             </div>
         </div>
         <!-- TABLE -->
-       
         <div class="container">
             <div class="table-wrapper">
                 <table class="table table-striped table-hover text-center">
@@ -95,7 +104,25 @@ session_start();
                     <tbody>
                     <?php
                         require "php/conn.php";
-                        $data = $conn->query("SELECT * FROM division where 1"); 
+
+                        $limit = 5; 
+                        if(isset($_GET["entries"])){
+                            $limit= $_GET["entries"];
+                        }
+                        
+                        $page = 1; 
+                        if(isset($_GET["page"])){
+                            $page = $_GET["page"];
+                        }
+
+                        $search = "where 1";
+                        if(isset($_GET["search"])){
+                            $term = "'".$_GET["search"]."%'"; 
+                            $search = "where DIV_NAME LIKE $term";
+                        }
+
+                        $rowstart = ($page-1)*$limit; 
+                        $data = $conn->query("SELECT * FROM division $search LIMIT $rowstart, $limit"); 
                         if(mysqli_num_rows($data)>0){
                             while($row = mysqli_fetch_assoc($data)){
                                 $managerid = $row['DIV_MANAGER'];
@@ -109,7 +136,7 @@ session_start();
                                     <td>
                                         <div class="emp-tab-buttons text-center">
                                             <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                            <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
+                                            <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> <a href="branches-tab.php?user='.$row["DIV_ID"].'">edit</a></button>
                                             <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
                                         </div>
                                     </td>
@@ -126,36 +153,34 @@ session_start();
             <div class="table-wrapper">
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 5 of 30 entries</div>
+                            <?php 
+                            $result_db = mysqli_query($conn,"SELECT COUNT(DIV_ID) FROM division");  
+                            $row_db = mysqli_fetch_row($result_db);  
+                            $total_records = $row_db[0];  
+
+                            ?>
+                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing <?php echo $rowstart. " to " .$limit. " of ". $total_records; ?> entries</div>
                     </div>
                     <div class="col-sm-12 col-md-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                            <ul class="pagination justify-content-end" style="margin:20px 0">
-                                <li class="paginate_button page-item previous disabled" id="example_previous">
-                                    <a href="#" aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                                </li>
-                                <li class="paginate_button page-item active">
-                                    <a href="#" aria-controls="example" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-                                </li>
-                                <li class="paginate_button page-item next" id="example_next">
-                                    <a href="#" aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-                                </li>
-                            </ul>
+                                 <?php  
+                                $result_db = mysqli_query($conn,"SELECT COUNT(DIV_ID) FROM division"); 
+                                $row_db = mysqli_fetch_row($result_db);  
+                                $total_records = $row_db[0];  
+                                $total_pages = ceil($total_records / $limit); 
+                                /* echo  $total_pages; */
+                                $pagLink = "<ul class='pagination justify-content-end' style='margin:20px 0'>
+                                                <li class='paginate_button page-item previous disabled' id='example_previous'>
+                                                    <a href='#'aria-controls='example' data-dt-idx='0' tabindex='0' class='page-link'>Previous</a>
+                                                </li>";  
+                                for ($i=1; $i<=$total_pages; $i++) {
+                                            $pagLink .= "<li class='paginate_button page-item active'><a class='page-link' href='branches-tab.php?page=".$i."'>".$i."</a></li>";	
+                                }
+                                echo $pagLink . " <li class='paginate_button page-item next' id='example_next'>
+                                                     <a href='#' aria-controls='example' data-dt-idx='7' tabindex='0' class='page-link'>Next</a>
+                                                    </li>
+                                                </ul>";  
+                            ?>
                         </div>
                     </div>
                 </div>
