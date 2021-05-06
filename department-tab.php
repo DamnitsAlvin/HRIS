@@ -61,9 +61,26 @@
         <div class="container">
             <div class="table-wrapper">
                 <div class="d-flex">
-                    <div class="p-2">Show</div> <input type="text" class="form-control col-1 text-center">
-                    <div class="p-2">Entries</div>
-                    <div class="ml-auto p-2">Search</div> <input type="text" class="form-control col-2">
+                <div class="p-2">Show</div>
+                    <form method="GET" action = "">
+                        <input type="text" name="entries" class="form-control col-1 text-center"
+                        <?php 
+                            if(isset($_GET["entries"])){
+                            echo 'placeholder="'.$_GET["entries"].'"';
+                            }
+                        ?>>
+                       
+                    </form>
+                    
+                    <div class="ml-auto p-2">Search</div> 
+                    <form method="GET" action="">
+                        <input type="text" class="form-control col-2" name="search"
+                        <?php 
+                            if(isset($_GET["search"])){
+                            echo 'placeholder="'.$_GET["search"].'"';
+                            }
+                        ?>>
+                    </form>
                   </div>
             </div>
         </div>
@@ -82,13 +99,28 @@
                     <tbody>
                     <?php
                         require "php/conn.php";
-                        $limit = 5;
-                        $page=1;
+                        
+                        $limit = 5; 
+                        if(isset($_GET["entries"])){
+                            $limit= $_GET["entries"];
+                        }
+                        
+                        $page = 1; 
+                        if(isset($_GET["page"])){
+                            $page = $_GET["page"];
+                        }
+
+                        $search = "where 1";
+                        if(isset($_GET["search"])){
+                            $term = "'".$_GET["search"]."%'"; 
+                            $search = "where DEPT_NAME LIKE $term";
+                        }
+
                         if(isset($_GET["page"])){
                             $page = $_GET["page"];
                         }
                         $rowstart = ($page-1) *$limit;
-                        $data = $conn->query("SELECT * FROM department where 1 LIMIT $rowstart, $limit"); 
+                        $data = $conn->query("SELECT * FROM department $search LIMIT $rowstart, $limit"); 
                         if(mysqli_num_rows($data)>0){
                             while($row = mysqli_fetch_assoc($data)){
                                 echo '
