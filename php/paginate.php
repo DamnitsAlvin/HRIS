@@ -1,6 +1,6 @@
 <?php
      require "conn.php";
-     $result_db = mysqli_query($conn,"SELECT COUNT(DEPT_ID) FROM department"); 
+     $result_db = mysqli_query($conn,"SELECT COUNT(DIV_ID) FROM division"); 
      $row_db = mysqli_fetch_row($result_db);  
      $total_records = $row_db[0];  
      $limit=5;
