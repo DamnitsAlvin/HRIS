@@ -30,7 +30,7 @@
                             ?>
             <img src="wip.gif" alt="wip" id="wip-image">
             <div class="pt-5">
-                <a href="index.html"><button class="btn btn-warning">GO BACK</button></a>
+                <a href="index.php"><button class="btn btn-warning">GO BACK</button></a>
             </div>
         </div>
     </div>
