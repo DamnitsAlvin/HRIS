@@ -1,4 +1,4 @@
-function showEmployees(str)
+function showUsers(str)
 {
    var limit = document.getElementById("limit").value;
 
@@ -10,11 +10,11 @@ function showEmployees(str)
         {
             if(this.readyState == 4 && this.status == 200)
             {
-                document.getElementById("empTableBody").innerHTML = this.responseText;
+                document.getElementById("usersTableBody").innerHTML = this.responseText;
             }
         };
 
-        xmlhttp.open("GET", "php/GetEmployees.php?limit=" + limit, true);
+        xmlhttp.open("GET", "php/GetUsers.php?limit=" + limit, true);
         xmlhttp.send();
     }
     else
@@ -25,11 +25,11 @@ function showEmployees(str)
         {
             if(this.readyState == 4 && this.status == 200)
             {
-                document.getElementById("empTableBody").innerHTML = this.responseText;
+                document.getElementById("usersTableBody").innerHTML = this.responseText;
             }
         };
 
-        xmlhttp.open("GET", "php/SearchEmployee.php?limit=" + limit + "&toSearch=" + str, true);
+        xmlhttp.open("GET", "php/SearchUsers.php?limit=" + limit + "&toSearch=" + str, true);
         xmlhttp.send();
     }
 }

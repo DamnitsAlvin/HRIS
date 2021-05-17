@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="styless.css">
     <link rel="icon" href="logo.png">
 </head>
-<body onload="showEmployees()">
+<body onload="showEmployees('')">
     <div class="container-fluid wrapper">
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-md navbar-light mb-2">
@@ -81,10 +81,10 @@
             <div class="table-wrapper">
                 <div class="d-flex">
                     <div class="p-2">Show</div> 
-                    <input id="limit" type="number" class="form-control col-1 text-center" value=5 onchange="showEmployees()">
+                    <input id="limit" type="number" class="form-control col-1 text-center" value=5 min=1 onchange="showEmployees('')">
                     <div class="p-2">Entries</div>
                     <div class="ml-auto p-2">Search</div> 
-                    <input id="searchbar" onkeyup="showEmployeeResult(this.value)" type="text" class="form-control col-2">
+                    <input id="searchbar" onkeyup="showEmployees(this.value)" type="text" class="form-control col-2">
                   </div>
             </div>
         </div>

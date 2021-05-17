@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styless.css">
     <link rel="icon" href="logo.png">
 </head>
-<body>
+<body onload="showUsers('')">
     <div class="container-fluid wrapper">
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-md navbar-light mb-2">
@@ -81,9 +81,11 @@
         <div class="container">
             <div class="table-wrapper">
                 <div class="d-flex">
-                    <div class="p-2">Show</div> <input type="text" class="form-control col-1 text-center">
+                    <div class="p-2">Show</div> 
+                    <input id="limit" type="number" value=5 min=1 class="form-control col-1 text-center" onchange="showUsers('')">
                     <div class="p-2">Entries</div>
-                    <div class="ml-auto p-2">Search</div> <input type="text" class="form-control col-2">
+                    <div class="ml-auto p-2">Search</div> 
+                    <input id="searchbar" onkeyup="showUsers(this.value)" type="text" class="form-control col-2">
                   </div>
             </div>
         </div>
@@ -100,72 +102,8 @@
                             <th>ACTION</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>010101</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>arviealcarazzz</td>
-                            <td>Manager</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>arviealcarazzz</td>
-                            <td>Manager</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>arviealcarazzz</td>
-                            <td>Manager</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>arviealcarazzz</td>
-                            <td>Manager</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>010101</td>
-                            <td>Arvie Alcaraz</td>
-                            <td>arviealcarazzz</td>
-                            <td>Manager</td>
-                            <td>
-                                <div class="emp-tab-buttons text-center">
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
-                                    <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody id="usersTableBody">
+                        <!--Javascript will fill this part-->
                     </tbody>
                 </table>
             </div>
@@ -211,6 +149,7 @@
             </div>
         </div>
     </div>
+        <script src="js/users.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
