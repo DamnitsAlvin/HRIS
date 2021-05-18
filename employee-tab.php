@@ -38,7 +38,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="wip.html">Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="index.html">Log Out</a>
+                            <a class="dropdown-item" href="php/logout.php">Log Out</a>
                         </div>
                     </li>
                   </ul>
