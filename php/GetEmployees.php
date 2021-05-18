@@ -2,10 +2,13 @@
     require_once('conn.php');
 
     $limit = intval($_GET["limit"]);
+    $curr_page = intval($_GET["page"]);
+    $start = ($curr_page - 1) * $limit;
+    
 
     if($limit > 0)
     {
-        $sql = "SELECT * FROM employees LIMIT $limit";
+        $sql = "SELECT * FROM employees LIMIT $start, $limit";
         $result = $conn->query($sql);
 
         if($result->num_rows > 0)
