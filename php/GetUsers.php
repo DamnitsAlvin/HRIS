@@ -1,11 +1,23 @@
 <?php
     require_once('conn.php');
+    $page = 1; 
+    if(isset($_GET["page"])){
+         $page = $_GET["page"];
+     }
 
-    $limit = intval($_GET["limit"]);
-
+     $search = "where 1";
+    if(isset($_GET["search"])){
+         $term = "'".$_GET["search"]."%'"; 
+         $search = "where DIV_NAME LIKE $term";
+     }
+     $limit = 5; 
+    if(isset($_GET["limit"])){
+         $limit= $_GET["limit"];
+     }
+    $rowstart = ($page-1) *$limit;
     if($limit > 0)
     {
-        $sql = "SELECT * FROM users LIMIT $limit";
+        $sql = "SELECT * FROM users $search LIMIT $rowstart, $limit";
         $result = $conn->query($sql);
 
         if($result->num_rows > 0)

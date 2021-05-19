@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styless.css">
     <link rel="icon" href="logo.png">
 </head>
-<body onload="showUsers('')">
+<body onload="showUsers()">
     <div class="container-fluid wrapper">
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-md navbar-light mb-2">
@@ -82,10 +82,10 @@
             <div class="table-wrapper">
                 <div class="d-flex">
                     <div class="p-2">Show</div> 
-                    <input id="limit" type="number" value=5 min=1 class="form-control col-1 text-center" onchange="showUsers('')">
+                    <input id="limit" type="number" value=5 min=1 class="form-control col-1 text-center" onchange="showUsers()">
                     <div class="p-2">Entries</div>
                     <div class="ml-auto p-2">Search</div> 
-                    <input id="searchbar" onkeyup="showUsers(this.value)" type="text" class="form-control col-2">
+                    <input id="searchbar" onkeyup="showUsers()" type="text" class="form-control col-2">
                   </div>
             </div>
         </div>
@@ -113,35 +113,12 @@
             <div class="table-wrapper">
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 5 of 30 entries</div>
+                        <div class="dataTables_info" id="table_info" role="status" aria-live="polite"><!--JavaScript will fill this part--></div>
                     </div>
                     <div class="col-sm-12 col-md-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                            <ul class="pagination justify-content-end" style="margin:20px 0">
-                                <li class="paginate_button page-item previous disabled" id="example_previous">
-                                    <a href="#" aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                                </li>
-                                <li class="paginate_button page-item active">
-                                    <a href="#" aria-controls="example" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="example" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-                                </li>
-                                <li class="paginate_button page-item next" id="example_next">
-                                    <a href="#" aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-                                </li>
+                            <ul id="pagelinks" class="pagination justify-content-end" style="margin:20px 0">
+                                <!--JavaScript will fill this part-->
                             </ul>
                         </div>
                     </div>

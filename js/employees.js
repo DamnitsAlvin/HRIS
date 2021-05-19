@@ -5,6 +5,7 @@ var limit;
 function showEmployees(str)
 {
     limit =  document.getElementById("limit").value;
+    console.log("page: ",curr_page);
 
     if(str.length == 0)
     {
@@ -16,6 +17,7 @@ function showEmployees(str)
             {
                 document.getElementById("empTableBody").innerHTML = this.responseText;
                 showTableInfo();
+               
             }
         };
 
@@ -53,8 +55,7 @@ function showPageLinks(lim)
         if(this.readyState == 4 && this.status == 200)
         {
             document.getElementById("pagelinks").innerHTML = this.responseText;
-            pages = document.getElementsByClassName("page-link");
-            total_pages = pages.length - 2;
+      
         }
     };
 

@@ -88,7 +88,7 @@ session_start();
                 
                 <div class="d-flex">
                     <div class="p-2">Show</div> 
-                    <input type="number" class="form-control col-1 text-center" id="limit" name="limit" value=5 onchange="showBranch()">
+                    <input type="number" class="form-control col-1 text-center" id="limit" name="limit" min = 1 value=5 onchange="showBranch()">
                     <div class="p-2">Entries</div>
                     <div class="ml-auto p-2">Search</div> <input type="text" class="form-control col-2" id="search" onkeyup="showBranch()" >
                   </div>
@@ -117,52 +117,22 @@ session_start();
         </div>
         <!-- SHOWING -->
         <div class="container">
-       
             <div class="table-wrapper">
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
-            
-                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 5 of 30 entries</div>
+                        <div class="dataTables_info" id="table_info" role="status" aria-live="polite"><!--JavaScript will fill this part--></div>
                     </div>
                     <div class="col-sm-12 col-md-7">
-                        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate paginate">
-                            <?php  
-                                require "php/conn.php";
-                                $result_db = mysqli_query($conn,"SELECT COUNT(DIV_ID) FROM division"); 
-                                $row_db = mysqli_fetch_row($result_db);  
-                                $total_records = $row_db[0];  
-                                $limit=1;
-                                if(isset($_GET["limit"])){
-                                    $limit = $_GET["limit"];
-                                }
-                                $total_pages = ceil($total_records / $limit); 
-                                /* echo  $total_pages; */
-                                $pagLink = "<ul class='pagination justify-content-end' style='margin:20px 0'>
-                                                <li class='paginate_button page-item previous disabled' id='example_previous'>
-                                                    <a href='#'aria-controls='example' data-dt-idx='0' tabindex='0' class='page-link'>Previous</a>
-                                                </li>";  
-                                for ($i=1; $i<=$total_pages; $i++) {
-                                            $pagLink .= "<li class='paginate_button page-item active'><a class='page-link' onclick='showBranch($i)' >".$i."</a></li>";	
-                                }
-                                echo $pagLink . " <li class='paginate_button page-item next' id='example_next'>
-                                                     <a href='#' aria-controls='example' data-dt-idx='7' tabindex='0' class='page-link'>Next</a>
-                                                    </li>
-                                                </ul>";  
-                            ?>
-
-                        <script>
-                            $(document).ready(function(){
-                                load_data(); 
-                                function load_data(page){
-                                    
-                                }
-                            })
-                        </script>
+                        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                            <ul id="pagelinks" class="pagination justify-content-end" style="margin:20px 0">
+                                <!--JavaScript will fill this part-->
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
         <script src ="js/branch.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

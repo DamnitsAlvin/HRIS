@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styless.css">
     <link rel="icon" href="logo.png">
 </head>
-<body onload="showDepartment()" onload="pagination()">
+<body onload="showDepartment()" >
     <div class="container-fluid wrapper">
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-md navbar-light mb-2">
@@ -82,7 +82,7 @@
         <div class="container">
             <div class="table-wrapper">
                 <div class="d-flex">
-                    <div class="p-2">Show</div> <input type="number" class="form-control col-1 text-center" id="limit" value=5 onchange="showDepartment()">
+                    <div class="p-2">Show</div> <input type="number" class="form-control col-1 text-center" id="limit" value=5 min =1 onchange="showDepartment()">
                     <div class="p-2">Entries</div>
                     <div class="ml-auto p-2">Search</div> <input type="text" class="form-control col-2" id="search" onkeyup="showDepartment()" >
                   </div>
@@ -107,15 +107,17 @@
             </div>
         </div>
         <!-- SHOWING -->
-        <div class="container" onload="pagination()">
+        <div class="container">
             <div class="table-wrapper">
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 5 of 30 entries</div>
+                        <div class="dataTables_info" id="table_info" role="status" aria-live="polite"><!--JavaScript will fill this part--></div>
                     </div>
                     <div class="col-sm-12 col-md-7">
-                        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate" >
-                         
+                        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                            <ul id="pagelinks" class="pagination justify-content-end" style="margin:20px 0">
+                                <!--JavaScript will fill this part-->
+                            </ul>
                         </div>
                     </div>
                 </div>
