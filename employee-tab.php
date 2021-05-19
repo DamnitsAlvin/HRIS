@@ -115,7 +115,7 @@
             <div class="table-wrapper">
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 5 of 30 entries</div>
+                        <div class="dataTables_info" id="table_info" role="status" aria-live="polite"><!--JavaScript will fill this part--></div>
                     </div>
                     <div class="col-sm-12 col-md-7">
                         <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">

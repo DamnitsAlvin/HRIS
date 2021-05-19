@@ -1,7 +1,10 @@
-function showEmployees(str, page = 1)
+var curr_page = 1;
+var total_pages = 5;
+var limit;
+
+function showEmployees(str)
 {
-   var limit = document.getElementById("limit").value;
-   var curr_page = page;
+    limit =  document.getElementById("limit").value;
 
     if(str.length == 0)
     {
@@ -12,6 +15,7 @@ function showEmployees(str, page = 1)
             if(this.readyState == 4 && this.status == 200)
             {
                 document.getElementById("empTableBody").innerHTML = this.responseText;
+                showTableInfo();
             }
         };
 
@@ -37,6 +41,7 @@ function showEmployees(str, page = 1)
     showPageLinks(limit);
 }
 
+
 function showPageLinks(lim)
 {
     var limit = lim;
@@ -48,15 +53,64 @@ function showPageLinks(lim)
         if(this.readyState == 4 && this.status == 200)
         {
             document.getElementById("pagelinks").innerHTML = this.responseText;
+            pages = document.getElementsByClassName("page-link");
+            total_pages = pages.length - 2;
         }
     };
 
-    xmlhttp.open("GET", "php/EmployeePageLinks.php?limit=" + limit, true);
+    xmlhttp.open("GET", "php/EmployeePageLinks.php?limit=" + limit + "&page=" + curr_page, true);
     xmlhttp.send();
 }
 
-function setLinkActive(pagelink)
+
+function showTableInfo()
 {
-    var element = document.getElementById(pagelink);
-    element.classList.add("active");
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function()
+    {
+        if(this.readyState == 4 && this.status == 200)
+        {
+            document.getElementById("table_info").innerHTML = this.responseText;
+        }
+    };
+
+    xmlhttp.open("GET", "php/EmployeeTableInfo.php?limit=" + limit + "&page=" + curr_page, true);
+    xmlhttp.send();
+}
+
+
+function loadPage(page)
+{
+    curr_page = page;
+    showEmployees('');
+}
+
+
+function next()
+{
+    if(curr_page == total_pages)
+    {
+        curr_page = 1;
+    }
+    else
+    {
+        curr_page++;
+    }
+
+    showEmployees('');
+}
+
+
+function prev()
+{
+    if(curr_page == 1)
+    {
+        curr_page = total_pages;
+    }
+    else
+    {
+        curr_page--;
+    }
+    showEmployees('');
 }

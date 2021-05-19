@@ -6,7 +6,7 @@
     $start = ($curr_page - 1) * $limit;
     
 
-    if($limit > 0)
+    if($limit >= 1)
     {
         $sql = "SELECT * FROM employees LIMIT $start, $limit";
         $result = $conn->query($sql);
