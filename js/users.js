@@ -7,7 +7,6 @@ function pagination(cat){
     xmlhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status==200){
             document.getElementById("pagelinks").innerHTML = this.responseText;
-            console.log("page: "+curPage);
             pages = document.getElementsByClassName("page-link");
             total_pages = pages.length - 2;
         }
@@ -33,6 +32,43 @@ function showTableInfo(cat)
     xmlhttp.send();
 }
 
+
+function showUsers(page){
+    var limit = document.getElementById("limit").value; 
+    var str = document.getElementById("search").value;
+    var xmlhttp = new XMLHttpRequest(); 
+
+    xmlhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status==200){
+            document.getElementById("usersTableBody").innerHTML = this.responseText;
+            showTableInfo("C");
+            pagination("C");
+        }
+    };
+    if(str){
+        xmlhttp.open("GET", "php/GetUsers.php?limit="+limit+"&search="+str, true);
+        if(page){
+            curPage=page;
+            xmlhttp.open("GET", "php/GetUsers.php?limit="+limit+"&page="+page, true); 
+        }
+    }
+    else{
+        xmlhttp.open("GET", "php/GetUsers.php?limit="+limit, true); 
+        if(page){
+            curPage=page;
+            xmlhttp.open("GET", "php/GetUsers.php?limit="+limit+"&page="+page, true); 
+        }
+    }
+    xmlhttp.send(); 
+    
+
+}
+function edithandler(num){
+    console.log("edit:" +num);
+}
+function deletehandler(num){
+    console.log("delete: "+num);
+}
 function nexthandler(){
     if(curPage == total_pages){
         curPage = 1; 
@@ -40,7 +76,7 @@ function nexthandler(){
     else{
         curPage++;
     }
-    showUsers(curPage);
+    showBranch(curPage);
 }
 
 function previoushandler(){
@@ -50,48 +86,6 @@ function previoushandler(){
     else{
         curPage--;
     }
-    showUsers(curPage);
+    showBranch(curPage);
 }
 
-function showUsers(page)
-{
-    var limit = document.getElementById("limit").value; 
-    var str = document.getElementById("search").value;
-    var xmlhttp = new XMLHttpRequest(); 
-
-    xmlhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status==200){
-            document.getElementById("usersTableBody").innerHTML = this.responseText;    
-            showTableInfo("C");
-            pagination("C");
-        }
-    };
-    if(str){
-        xmlhttp.open("GET", "php/GetUserss.php?limit="+limit+"&search="+str, true);
-        if(page){
-            xmlhttp.open("GET", "php/GetUsers.php?limit="+limit+"&search="+str+"&page="+page, true);
-            curPage=page;
-        }
-    }
-    else{
-        xmlhttp.open("GET", "php/GetUsers.php?limit="+limit, true); 
-        if(page){
-            xmlhttp.open("GET", "php/GetUsers.php?limit="+limit+"&page="+page, true); 
-            curPage=page;
-        }
-    }
-    xmlhttp.send()
-
-}
-
-
-
-
-
-
-function edithandler(num){
-    console.log("edit:" +num);
-}
-function deletehandler(num){
-    console.log("delete: "+num);
-}

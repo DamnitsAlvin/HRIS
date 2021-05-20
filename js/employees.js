@@ -55,7 +55,7 @@ function showPageLinks(lim)
         if(this.readyState == 4 && this.status == 200)
         {
             document.getElementById("pagelinks").innerHTML = this.responseText;
-      
+            total_pages = pages.length - 2;
         }
     };
 

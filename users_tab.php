@@ -85,7 +85,7 @@
                     <input id="limit" type="number" value=5 min=1 class="form-control col-1 text-center" onchange="showUsers()">
                     <div class="p-2">Entries</div>
                     <div class="ml-auto p-2">Search</div> 
-                    <input id="searchbar" onkeyup="showUsers()" type="text" class="form-control col-2">
+                    <input id="search" onkeyup="showUsers()" type="text" class="form-control col-2">
                   </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
             </div>
         </div>
     </div>
-        <script src="js/users.js"></script>
+        <script src="js/users.js">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

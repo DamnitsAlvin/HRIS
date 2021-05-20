@@ -110,7 +110,7 @@ session_start();
                         </tr>
                     </thead>
                     <tbody id = "branchbody">
-
+                        <!--JavaScript will fill this part-->
                     </tbody>
                 </table>
             </div>
