@@ -21,7 +21,7 @@
                     <td>
                         <div class='emp-tab-buttons text-center'>
                             <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button>
-                            <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button>
+                            <a href='update-employee.php?id=$row[EMP_ID]'><button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button></a>
                             <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>print</i> print</button>
                         </div>
                     </td>

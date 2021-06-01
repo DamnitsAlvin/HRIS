@@ -1,3 +1,20 @@
+<?php
+    session_start();
+    require_once ('php/conn.php');
+
+    if(isset($_GET["id"]))
+    {
+        $id = $_GET["id"];
+        $sql = "SELECT * FROM employees WHERE EMP_ID = $id";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+    }
+
+    $sql = "SELECT * FROM managers WHERE MANAGER_ID = $data[MANAGER_ID]";
+    $result = $conn->query($sql);
+    $assoc = $result->fetch_assoc();
+    $manager_name = $assoc["Manager_Name"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,22 +82,22 @@
                     </li>
                   </ul>
                 </div>
-            </div>    
+            </div>
         </nav>
         <div class="container">
             <div class="row">
                 <div class="d-flex flex-column mx-auto w-100 pb-5">
                     <div class="text-center">
-                        <h2 class="p-5">ADD EMPLOYEE</h2>
+                        <h2 class="p-5">EDIT EMPLOYEE</h2>
                     </div>
-                    <form id="add-employee-form">
+                    <form action=<?php echo 'php/EditEmployee.php?id='.$id?> method="POST" id="add-employee-form">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
                                     <label for="firstname">First Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="firstname">
+                                    <input type="text" class="form-control border-secondary" id="firstname" name="fname" value="<?php echo $data['FNAME']?>">
                                 </div>
                             </div>
                         </div>
@@ -91,7 +108,7 @@
                                     <label for="lastname">Last Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="lastname">
+                                    <input type="text" class="form-control border-secondary" id="lastname" name="lname" value="<?php echo $data['LNAME']?>">
                                 </div>
                             </div>
                         </div>
@@ -102,7 +119,7 @@
                                     <label for="middlename">Middle Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="middlename">
+                                    <input type="text" class="form-control border-secondary" id="middlename" name="mname" value="<?php echo $data['MNAME']?>">
                                 </div>
                             </div>
                         </div>
@@ -113,7 +130,7 @@
                                     <label for="address">Address:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="address">
+                                    <input type="text" class="form-control border-secondary" id="address" name="address" value="<?php echo $data['ADDRESS']?>">
                                 </div>
                             </div>
                         </div>
@@ -124,8 +141,8 @@
                                     <label for="sex">Sex:</label>
                                 </div>
                                 <div class="col d-flex">
-                                    <label class="radio-inline pr-5"><input type="radio" name="optradio" checked> Female</label>
-                                    <label class="radio-inline pl-5"><input type="radio" name="optradio"> Male</label>
+                                    <label class="radio-inline pr-5"><input type="radio" name="optradio" value="FEMALE" <?php echo ($data['SEX'] == "FEMALE") ? 'checked' : null; ?>> Female</label>
+                                    <label class="radio-inline pl-5"><input type="radio" name="optradio" value="MALE" <?php echo ($data['SEX'] == "MALE") ? 'checked' : null; ?>> Male</label>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +153,7 @@
                                     <label for="date-of-birth">Date of Birth:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="date" class="form-control border-secondary" id="date-of-birth">
+                                    <input type="date" class="form-control border-secondary" id="date-of-birth" name="dob" value=<?php echo $data['DOB']?>>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +164,7 @@
                                     <label for="place-of-birth">Place of Birth:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="place-of-birth">
+                                    <input type="text" class="form-control border-secondary" id="place-of-birth" name="pob" value="<?php echo $data['PLACE_OF_BIRTH']?>">
                                 </div>
                             </div>
                         </div>
@@ -158,7 +175,7 @@
                                     <label for="contact-number">Contact Number:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="contact-number">
+                                    <input type="text" class="form-control border-secondary" id="contact-number" name="contact" value=<?php echo $data['CONTACT_NUM']?>>
                                 </div>
                             </div>
                         </div>
@@ -169,11 +186,11 @@
                                     <label for="civil-status">Civil Status:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="civil-status">
-                                        <option>Single</option>
-                                        <option>Married</option>
-                                        <option>Widowed</option>
-                                        <option>Divorced</option>
+                                    <select class="form-control border-secondary" id="civil-status" name="civilstatus" value=<?php echo $data['CIVIL_STATUS']?>>
+                                        <option <?php echo ($data['CIVIL_STATUS'] == "SINGLE") ? 'selected' : null; ?>>Single</option>
+                                        <option <?php echo ($data['CIVIL_STATUS'] == "MARRIED") ? 'selected' : null; ?>>Married</option>
+                                        <option <?php echo ($data['CIVIL_STATUS'] == "WIDOWED") ? 'selected' : null; ?>>Widowed</option>
+                                        <option <?php echo ($data['CIVIL_STATUS'] == "DIVORCED") ? 'selected' : null; ?>>Divorced</option>
                                     </select>
                                 </div>
                             </div>
@@ -185,7 +202,7 @@
                                     <label for="position">Position:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="position">
+                                    <input type="text" class="form-control border-secondary" id="position" name="position" value="<?php echo $data['POSITION']?>">
                                 </div>
                             </div>
                         </div>
@@ -196,15 +213,8 @@
                                     <label for="department">Department:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="department">
-                                        <option>Administrative Department</option>
-                                        <option>Accounting Department</option>
-                                        <option>Redistribution and Inventory Department</option>
-                                        <option>Human Resource Department</option>
-                                        <option>Marketing and Sales Department</option>
-                                        <option>IT Department</option>
-                                        <option>Delivery Department</option>
-                                        <option>Security Department</option>
+                                    <select class="form-control border-secondary" name="department" id="department">
+                                        <?php require_once('php/DepartmentsDropdown.php');?>
                                     </select>
                                 </div>
                             </div>
@@ -216,12 +226,8 @@
                                     <label for="branch">Branch:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="branch">
-                                        <option>Manila</option>
-                                        <option>Bulacan</option>
-                                        <option>Cavite</option>
-                                        <option>Cebu</option>
-                                        <option>Davao</option>
+                                    <select class="form-control border-secondary" name="branch" id="branch">
+                                        <?php require_once('php/BranchDropwdown.php');?>
                                     </select>
                                 </div>
                             </div>
@@ -233,13 +239,10 @@
                                     <label for="work-status">Work Status:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="work-status">
-                                        <option>Regular or Permanent Employment</option>
-                                        <option>Term or Fixed Employment</option>
-                                        <option>Project Employment</option>
-                                        <option>Seasonal Employment</option>
-                                        <option>Casual Employment</option>
-                                        <option>On-the-Job Training</option>
+                                    <select class="form-control border-secondary" name="workstatus" id="work-status">
+                                        <option <?php echo ($data['WORK_STATUS'] == "REGULAR") ? 'selected' : null; ?>>Regular Employment</option>
+                                        <option <?php echo ($data['WORK_STATUS'] == "PART-TIME") ? 'selected' : null; ?>>Part-time Employment</option>
+                                        <option <?php echo ($data['WORK_STATUS'] == "INTERN") ? 'selected' : null; ?>>Internship Employment</option>
                                     </select>
                                 </div>
                             </div>
@@ -251,7 +254,7 @@
                                     <label for="hired-date">Hired Date:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="date" class="form-control border-secondary" id="hired-date">
+                                    <input type="date" class="form-control border-secondary" id="hired-date" name="hireddate" value=<?php echo $data['HIRED_DATE']?>>
                                 </div>
                             </div>
                         </div>
@@ -259,10 +262,12 @@
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="manager">Manager:</label>
+                                    <label for="branch">Manager:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="manager">
+                                    <select class="form-control border-secondary" name="manager" id="manager">
+                                        <?php require_once('php/ManagersDropdown.php');?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +278,7 @@
                                     <label for="salary">Salary:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="salary">
+                                    <input type="text" class="form-control border-secondary" id="salary" name="salary" value=<?php echo $data['SALARY']?>>
                                 </div>
                             </div>
                         </div>
@@ -284,7 +289,7 @@
                                     <label for="commission">Commission:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="commission">
+                                    <input type="text" class="form-control border-secondary" id="commission" name="commission" value=<?php echo $data['COMMISSION']?>>
                                 </div>
                             </div>
                         </div>
