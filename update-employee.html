@@ -1,20 +1,3 @@
-<?php
-    session_start();
-    require_once ('php/conn.php');
-
-    if(isset($_GET["id"]))
-    {
-        $id = $_GET["id"];
-        $sql = "SELECT * FROM employees WHERE EMP_ID = $id";
-        $result = $conn->query($sql);
-        $data = $result->fetch_assoc();
-    }
-
-    $sql = "SELECT * FROM managers WHERE MANAGER_ID = $data[MANAGER_ID]";
-    $result = $conn->query($sql);
-    $assoc = $result->fetch_assoc();
-    $manager_name = $assoc["Manager_Name"];
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +12,9 @@
 </head>
 <body>
     <div class="container-fluid wrapper">
-    <nav class="navbar navbar-expand-md navbar-light mb-2">
+        <nav class="navbar navbar-expand-md navbar-light mb-2">
             <div class="container-fluid">
-                <a href="index.php" class="navbar-brand mr-5">
+                <a href="index.html" class="navbar-brand mr-5">
                     <img src="logo.png" width="" height="" class="navlogo" alt="" loading="lazy" >
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -41,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-light active" href="employee-tab.php">Employees</a>
+                        <a class="nav-link text-light active" href="employee-tab.html">Employees</a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
@@ -49,13 +32,13 @@
                                 Utilities
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item " href="branches-tab.php">Branches</a>
-                                <a class="dropdown-item" href="department-tab.php">Departments</a>
+                                <a class="dropdown-item " href="branches-tab.html">Branches</a>
+                                <a class="dropdown-item" href="department-tab.html">Departments</a>
                             </div>
                         </div>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-light " href="users_tab.php">Users</a>
+                      <a class="nav-link text-light " href="users_tab.html">Users</a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
@@ -63,41 +46,39 @@
                                 Reports
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item " href="reports.php">List of Employees</a>
+                                <a class="dropdown-item " href="reports.html">List of Employees</a>
                             </div>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome,  <?php
-                                echo $_SESSION["username"];
-                                //substr(ucfirst(strtolower($_SESSION["username"])), 0 , strpos(ucfirst(strtolower($_SESSION["username"])), " "))
-                            ?>
+                            Welcome, Lorem Ipsum
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <a class="dropdown-item" href="wip.php">Profile</a> <!-- just show pdf here -->
+                             <a class="dropdown-item" href="wip.html">Profile</a> <!-- just show pdf here -->
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="php/logout.php">Log Out</a>
+                            <a class="dropdown-item" href="index.html">Log Out</a>
                         </div>
                     </li>
                   </ul>
                 </div>
-            </div>
+            </div>    
         </nav>
+
         <div class="container">
             <div class="row">
                 <div class="d-flex flex-column mx-auto w-100 pb-5">
                     <div class="text-center">
                         <h2 class="p-5">EDIT EMPLOYEE</h2>
                     </div>
-                    <form action=<?php echo 'php/EditEmployee.php?id='.$id?> method="POST" id="add-employee-form">
+                    <form id="add-employee-form">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
                                     <label for="firstname">First Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="firstname" name="fname" value="<?php echo $data['FNAME']?>">
+                                    <input type="text" class="form-control border-secondary" id="firstname">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +89,7 @@
                                     <label for="lastname">Last Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="lastname" name="lname" value="<?php echo $data['LNAME']?>">
+                                    <input type="text" class="form-control border-secondary" id="lastname">
                                 </div>
                             </div>
                         </div>
@@ -119,7 +100,7 @@
                                     <label for="middlename">Middle Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="middlename" name="mname" value="<?php echo $data['MNAME']?>">
+                                    <input type="text" class="form-control border-secondary" id="middlename">
                                 </div>
                             </div>
                         </div>
@@ -130,7 +111,7 @@
                                     <label for="address">Address:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="address" name="address" value="<?php echo $data['ADDRESS']?>">
+                                    <input type="text" class="form-control border-secondary" id="address">
                                 </div>
                             </div>
                         </div>
@@ -141,8 +122,8 @@
                                     <label for="sex">Sex:</label>
                                 </div>
                                 <div class="col d-flex">
-                                    <label class="radio-inline pr-5"><input type="radio" name="optradio" value="FEMALE" <?php echo ($data['SEX'] == "FEMALE") ? 'checked' : null; ?>> Female</label>
-                                    <label class="radio-inline pl-5"><input type="radio" name="optradio" value="MALE" <?php echo ($data['SEX'] == "MALE") ? 'checked' : null; ?>> Male</label>
+                                    <label class="radio-inline pr-5"><input type="radio" name="optradio" checked> Female</label>
+                                    <label class="radio-inline pl-5"><input type="radio" name="optradio"> Male</label>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +134,7 @@
                                     <label for="date-of-birth">Date of Birth:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="date" class="form-control border-secondary" id="date-of-birth" name="dob" value=<?php echo $data['DOB']?>>
+                                    <input type="date" class="form-control border-secondary" id="date-of-birth">
                                 </div>
                             </div>
                         </div>
@@ -164,7 +145,7 @@
                                     <label for="place-of-birth">Place of Birth:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="place-of-birth" name="pob" value="<?php echo $data['PLACE_OF_BIRTH']?>">
+                                    <input type="text" class="form-control border-secondary" id="place-of-birth">
                                 </div>
                             </div>
                         </div>
@@ -175,7 +156,7 @@
                                     <label for="contact-number">Contact Number:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="contact-number" name="contact" value=<?php echo $data['CONTACT_NUM']?>>
+                                    <input type="text" class="form-control border-secondary" id="contact-number">
                                 </div>
                             </div>
                         </div>
@@ -186,11 +167,11 @@
                                     <label for="civil-status">Civil Status:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="civil-status" name="civilstatus" value=<?php echo $data['CIVIL_STATUS']?>>
-                                        <option <?php echo ($data['CIVIL_STATUS'] == "SINGLE") ? 'selected' : null; ?>>Single</option>
-                                        <option <?php echo ($data['CIVIL_STATUS'] == "MARRIED") ? 'selected' : null; ?>>Married</option>
-                                        <option <?php echo ($data['CIVIL_STATUS'] == "WIDOWED") ? 'selected' : null; ?>>Widowed</option>
-                                        <option <?php echo ($data['CIVIL_STATUS'] == "DIVORCED") ? 'selected' : null; ?>>Divorced</option>
+                                    <select class="form-control border-secondary" id="civil-status">
+                                        <option>Single</option>
+                                        <option>Married</option>
+                                        <option>Widowed</option>
+                                        <option>Divorced</option>
                                     </select>
                                 </div>
                             </div>
@@ -202,7 +183,7 @@
                                     <label for="position">Position:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="position" name="position" value="<?php echo $data['POSITION']?>">
+                                    <input type="text" class="form-control border-secondary" id="position">
                                 </div>
                             </div>
                         </div>
@@ -213,8 +194,15 @@
                                     <label for="department">Department:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" name="department" id="department">
-                                        <?php require_once('php/DepartmentsDropdown.php');?>
+                                    <select class="form-control border-secondary" id="department">
+                                        <option>Administrative Department</option>
+                                        <option>Accounting Department</option>
+                                        <option>Redistribution and Inventory Department</option>
+                                        <option>Human Resource Department</option>
+                                        <option>Marketing and Sales Department</option>
+                                        <option>IT Department</option>
+                                        <option>Delivery Department</option>
+                                        <option>Security Department</option>
                                     </select>
                                 </div>
                             </div>
@@ -226,8 +214,12 @@
                                     <label for="branch">Branch:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" name="branch" id="branch">
-                                        <?php require_once('php/BranchDropwdown.php');?>
+                                    <select class="form-control border-secondary" id="branch">
+                                        <option>Manila</option>
+                                        <option>Bulacan</option>
+                                        <option>Cavite</option>
+                                        <option>Cebu</option>
+                                        <option>Davao</option>
                                     </select>
                                 </div>
                             </div>
@@ -239,10 +231,13 @@
                                     <label for="work-status">Work Status:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" name="workstatus" id="work-status">
-                                        <option <?php echo ($data['WORK_STATUS'] == "REGULAR") ? 'selected' : null; ?>>Regular Employment</option>
-                                        <option <?php echo ($data['WORK_STATUS'] == "PART-TIME") ? 'selected' : null; ?>>Part-time Employment</option>
-                                        <option <?php echo ($data['WORK_STATUS'] == "INTERN") ? 'selected' : null; ?>>Internship Employment</option>
+                                    <select class="form-control border-secondary" id="work-status">
+                                        <option>Regular or Permanent Employment</option>
+                                        <option>Term or Fixed Employment</option>
+                                        <option>Project Employment</option>
+                                        <option>Seasonal Employment</option>
+                                        <option>Casual Employment</option>
+                                        <option>On-the-Job Training</option>
                                     </select>
                                 </div>
                             </div>
@@ -254,7 +249,7 @@
                                     <label for="hired-date">Hired Date:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="date" class="form-control border-secondary" id="hired-date" name="hireddate" value=<?php echo $data['HIRED_DATE']?>>
+                                    <input type="date" class="form-control border-secondary" id="hired-date">
                                 </div>
                             </div>
                         </div>
@@ -262,12 +257,10 @@
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="branch">Manager:</label>
+                                    <label for="manager">Manager:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" name="manager" id="manager">
-                                        <?php require_once('php/ManagersDropdown.php');?>
-                                    </select>
+                                    <input type="text" class="form-control border-secondary" id="manager">
                                 </div>
                             </div>
                         </div>
@@ -278,7 +271,7 @@
                                     <label for="salary">Salary:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="salary" name="salary" value=<?php echo $data['SALARY']?>>
+                                    <input type="text" class="form-control border-secondary" id="salary">
                                 </div>
                             </div>
                         </div>
@@ -289,7 +282,7 @@
                                     <label for="commission">Commission:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="commission" name="commission" value=<?php echo $data['COMMISSION']?>>
+                                    <input type="text" class="form-control border-secondary" id="commission">
                                 </div>
                             </div>
                         </div>

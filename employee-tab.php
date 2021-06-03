@@ -59,7 +59,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Welcome,  <?php
-                                echo $_SESSION["username"];
+                                echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
                                 //substr(ucfirst(strtolower($_SESSION["username"])), 0 , strpos(ucfirst(strtolower($_SESSION["username"])), " "))
                             ?>
                         </a>
@@ -75,8 +75,9 @@
         </nav>
         <!-- TITLE -->
         <div class="text-center">
-            <h2 class="p-5">Employee Tab</h2>
+            <h2 class="p-5">Employee Tab  <a class="btn btn-primary text-light" style="padding: 0px 4px;" href="add-employee.html">+ New</a></h2>
         </div>
+        
         <!-- SEARCH BAR -->
         <div class="container">
             <div class="table-wrapper">

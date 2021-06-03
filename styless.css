@@ -98,7 +98,7 @@ button[type=reset]{
     background-color: #0a2733;
 }
 
-.add-emp-buttons > button[type=submit]{
+.add-emp-buttons{
     background-color: #05bbb4;
 }
 
@@ -110,6 +110,11 @@ button[type=reset]{
 
 .nav-item{
     margin-left: 30px;
+}
+
+a, a:hover {
+    text-decoration: none !important;
+    color: #fff;
 }
 
 /* SEARCH BAR */
