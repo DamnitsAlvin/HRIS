@@ -13,7 +13,8 @@
 
         if(strcmp($saved_pass, $password) == 0){
             $_SESSION["username"] = $row["ACC_NAME"];
-            header("location: ../branches-tab.php");
+            $_SESSION["id"] = $row["EMP_ID"];
+            header("location: ../employee-tab.php");
         }
         else{
             $_SESSION["login_error"] = "INCORRECT PASSWORD!"; 

@@ -34,7 +34,7 @@
                      <div class="emp-tab-buttons text-center">
                          <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
                          <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit </button>
-                         <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button>
+                        <a href="php/pdfBranch.php?branchId='.$row['DIV_ID'].'" > <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button></a>
                      </div>
                  </td>
              </tr>';
