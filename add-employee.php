@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,13 +52,10 @@ session_start();
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome,  <?php
-                                echo $_SESSION["username"];
-                                //substr(ucfirst(strtolower($_SESSION["username"])), 0 , strpos(ucfirst(strtolower($_SESSION["username"])), " "))
-                            ?>
+                            Welcome, Lorem Ipsum
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <a class="dropdown-item" href="wip.php">Profile</a> <!-- just show pdf here -->
+                             <a class="dropdown-item" href="wip.html">Profile</a> <!-- just show pdf here -->
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="php/logout.php">Log Out</a>
                         </div>
@@ -71,13 +64,14 @@ session_start();
                 </div>
             </div>    
         </nav>
+
         <div class="container">
             <div class="row">
                 <div class="d-flex flex-column mx-auto w-100 pb-5">
                     <div class="text-center">
                         <h2 class="p-5">ADD EMPLOYEE</h2>
                     </div>
-                    <form id="add-employee-form">
+                    <form id="add-employee-form" action="php/AddEmployee.php" method="POST">
 
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
@@ -85,7 +79,7 @@ session_start();
                                     <label for="firstname">First Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="firstname">
+                                    <input type="text" class="form-control border-secondary" id="firstname" name="fname">
                                 </div>
                             </div>
                         </div>
@@ -96,7 +90,7 @@ session_start();
                                     <label for="lastname">Last Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="lastname">
+                                    <input type="text" class="form-control border-secondary" id="lastname" name="lname">
                                 </div>
                             </div>
                         </div>
@@ -107,7 +101,7 @@ session_start();
                                     <label for="middlename">Middle Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="middlename">
+                                    <input type="text" class="form-control border-secondary" id="middlename" name="mname">
                                 </div>
                             </div>
                         </div>
@@ -118,7 +112,7 @@ session_start();
                                     <label for="address">Address:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="address">
+                                    <input type="text" class="form-control border-secondary" id="address" name="address">
                                 </div>
                             </div>
                         </div>
@@ -129,8 +123,8 @@ session_start();
                                     <label for="sex">Sex:</label>
                                 </div>
                                 <div class="col d-flex">
-                                    <label class="radio-inline pr-5"><input type="radio" name="optradio" checked> Female</label>
-                                    <label class="radio-inline pl-5"><input type="radio" name="optradio"> Male</label>
+                                    <label class="radio-inline pr-5"><input type="radio" name="sex" value="FEMALE" checked> Female</label>
+                                    <label class="radio-inline pl-5"><input type="radio" name="sex" value="MALE"> Male</label>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +135,7 @@ session_start();
                                     <label for="date-of-birth">Date of Birth:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="date" class="form-control border-secondary" id="date-of-birth">
+                                    <input type="date" class="form-control border-secondary" id="date-of-birth" name="dob">
                                 </div>
                             </div>
                         </div>
@@ -152,7 +146,7 @@ session_start();
                                     <label for="place-of-birth">Place of Birth:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="place-of-birth">
+                                    <input type="text" class="form-control border-secondary" id="place-of-birth" name="pob">
                                 </div>
                             </div>
                         </div>
@@ -163,7 +157,7 @@ session_start();
                                     <label for="contact-number">Contact Number:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="contact-number">
+                                    <input type="text" class="form-control border-secondary" id="contact-number" name="contact">
                                 </div>
                             </div>
                         </div>
@@ -174,7 +168,7 @@ session_start();
                                     <label for="civil-status">Civil Status:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="civil-status">
+                                    <select class="form-control border-secondary" id="civil-status" name="civilstatus">
                                         <option>Single</option>
                                         <option>Married</option>
                                         <option>Widowed</option>
@@ -190,7 +184,7 @@ session_start();
                                     <label for="position">Position:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="position">
+                                    <input type="text" class="form-control border-secondary" id="position" name="position">
                                 </div>
                             </div>
                         </div>
@@ -201,15 +195,8 @@ session_start();
                                     <label for="department">Department:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="department">
-                                        <option>Administrative Department</option>
-                                        <option>Accounting Department</option>
-                                        <option>Redistribution and Inventory Department</option>
-                                        <option>Human Resource Department</option>
-                                        <option>Marketing and Sales Department</option>
-                                        <option>IT Department</option>
-                                        <option>Delivery Department</option>
-                                        <option>Security Department</option>
+                                    <select class="form-control border-secondary" id="department" name="department">
+                                        <?php require_once('php/DepartmentsDropdown.php');?>
                                     </select>
                                 </div>
                             </div>
@@ -221,13 +208,9 @@ session_start();
                                     <label for="branch">Branch:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="branch">
-                                        <option>Manila</option>
-                                        <option>Bulacan</option>
-                                        <option>Cavite</option>
-                                        <option>Cebu</option>
-                                        <option>Davao</option>
-                                    </select>
+                                    <select class="form-control border-secondary" id="branch" name="branch">
+                                        <?php require_once('php/BranchDropwdown.php');?>
+                                    </select>   
                                 </div>
                             </div>
                         </div>
@@ -238,13 +221,10 @@ session_start();
                                     <label for="work-status">Work Status:</label>
                                 </div>
                                 <div class="col">
-                                    <select class="form-control border-secondary" id="work-status">
-                                        <option>Regular or Permanent Employment</option>
-                                        <option>Term or Fixed Employment</option>
-                                        <option>Project Employment</option>
-                                        <option>Seasonal Employment</option>
-                                        <option>Casual Employment</option>
-                                        <option>On-the-Job Training</option>
+                                    <select class="form-control border-secondary" id="work-status" name="workstatus">
+                                        <option>REGULAR</option>
+                                        <option>PART-TIME</option>
+                                        <option>INTERN</option>
                                     </select>
                                 </div>
                             </div>
@@ -256,7 +236,7 @@ session_start();
                                     <label for="hired-date">Hired Date:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="date" class="form-control border-secondary" id="hired-date">
+                                    <input type="date" class="form-control border-secondary" id="hired-date" name="hireddate">
                                 </div>
                             </div>
                         </div>
@@ -264,10 +244,12 @@ session_start();
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="manager">Manager:</label>
+                                    <label for="branch">Manager:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="manager">
+                                    <select class="form-control border-secondary" id="manager" name="manager">
+                                        <?php require_once('php/ManagersDropdown.php');?>
+                                    </select>   
                                 </div>
                             </div>
                         </div>
@@ -278,7 +260,7 @@ session_start();
                                     <label for="salary">Salary:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="salary">
+                                    <input type="text" class="form-control border-secondary" id="salary" name="salary">
                                 </div>
                             </div>
                         </div>
@@ -289,7 +271,7 @@ session_start();
                                     <label for="commission">Commission:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="commission">
+                                    <input type="text" class="form-control border-secondary" id="commission" name="commission">
                                 </div>
                             </div>
                         </div>

@@ -75,7 +75,7 @@
         </nav>
         <!-- TITLE -->
         <div class="text-center">
-            <h2 class="p-5">Employee Tab  <a class="btn btn-primary text-light" style="padding: 0px 4px;" href="add-employee.html">+ New</a></h2>
+            <h2 class="p-5">Employee Tab  <a class="btn btn-primary text-light" style="padding: 0px 4px;" href="add-employee.php">+ New</a></h2>
         </div>
         
         <!-- SEARCH BAR -->

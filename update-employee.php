@@ -240,9 +240,9 @@
                                 </div>
                                 <div class="col">
                                     <select class="form-control border-secondary" name="workstatus" id="work-status">
-                                        <option <?php echo ($data['WORK_STATUS'] == "REGULAR") ? 'selected' : null; ?>>Regular Employment</option>
-                                        <option <?php echo ($data['WORK_STATUS'] == "PART-TIME") ? 'selected' : null; ?>>Part-time Employment</option>
-                                        <option <?php echo ($data['WORK_STATUS'] == "INTERN") ? 'selected' : null; ?>>Internship Employment</option>
+                                        <option <?php echo ($data['WORK_STATUS'] == "REGULAR") ? 'selected' : null; ?>>REGULAR</option>
+                                        <option <?php echo ($data['WORK_STATUS'] == "PART-TIME") ? 'selected' : null; ?>>PART-TIME</option>
+                                        <option <?php echo ($data['WORK_STATUS'] == "INTERN") ? 'selected' : null; ?>>INTERN</option>
                                     </select>
                                 </div>
                             </div>

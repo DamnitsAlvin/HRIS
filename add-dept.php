@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRIS | aDD Department</title>
+    <title>HRIS | Add Department</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="styles.css">
@@ -71,14 +71,14 @@
                     <div class="text-center">
                         <h2 class="p-5">ADD DEPARTMENT</h2>
                     </div>
-                    <form id="add-employee-form">
+                    <form id="add-employee-form" action="php/AddDepartment.php" method="POST">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
                                     <label for="department-name">Department Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="department-name">
+                                    <input type="text" class="form-control border-secondary" id="department-name" name="departmentname">
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                                     <label for="description">Description:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="description">
+                                    <input type="text" class="form-control border-secondary" id="description" name="description">
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                                     <label for="department-head">Department Head:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="department-head">
+                                    <input type="text" class="form-control border-secondary" id="department-head" name="departmenthead">
                                 </div>
                             </div>
                         </div>

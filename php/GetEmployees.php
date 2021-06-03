@@ -26,7 +26,7 @@
                             <div class='emp-tab-buttons text-center'>
                                 <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button>   
                                 <a href='update-employee.php?id=$row[EMP_ID]'><button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button></a>
-                                <a href= 'php/pdf.php?empId=$row[EMP_ID]' target='_blank'> <button class='btn btn-primary text-light' onclick='toPDF($row[EMP_ID])'> <i class='material-icons' style='font-size:16px'>print</i> print</button></a>
+                                <a href= 'php/pdf.php?empId=$row[EMP_ID]' target='_blank'><button class='btn btn-primary text-light' onclick='toPDF($row[EMP_ID])'> <i class='material-icons' style='font-size:16px'>print</i> print</button></a>
                             </div>
                         </td>
                     </tr>";

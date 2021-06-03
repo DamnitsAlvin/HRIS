@@ -71,14 +71,14 @@
                     <div class="text-center">
                         <h2 class="p-5">ADD BRANCH</h2>
                     </div>
-                    <form id="add-employee-form">
+                    <form id="add-employee-form" action="php/AddBranch.php" method="POST">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
                                     <label for="branch-name">Branch Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="branch-name">
+                                    <input type="text" class="form-control border-secondary" id="branch-name" name="branchname">
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                                     <label for="adress">Address:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="address">
+                                    <input type="text" class="form-control border-secondary" id="address" name="address">
                                 </div>
                             </div>
                         </div>
@@ -97,10 +97,12 @@
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="branch-manager">Branch Manager:</label>
+                                    <label for="branch">Manager:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="branch-manager">
+                                    <select class="form-control border-secondary" id="manager" name="manager">
+                                        <?php require_once('php/ManagersDropdown.php');?>
+                                    </select>   
                                 </div>
                             </div>
                         </div>

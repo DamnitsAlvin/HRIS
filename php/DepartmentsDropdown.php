@@ -8,7 +8,10 @@
     {
         while($row = $result->fetch_assoc())
         {
-            $selected = ($data["DEPT_ID"] == $row["DEPT_ID"]) ? 'selected' : null;
+            if(isset($data["DEPT_ID"]))
+            {
+                $selected = ($data["DEPT_ID"] == $row["DEPT_ID"]) ? 'selected' : null;
+            }
             echo "<option $selected>$row[DESCRIPTION]</option>";
         }
     }

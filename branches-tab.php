@@ -77,10 +77,7 @@ session_start();
         </nav>
         <!-- TITLE -->
         <div class="text-center">
-            <h2 class="p-5">Branches</h2>
-            <?php
-
-            ?>
+            <h2 class="p-5">BRANCHES  <a class="btn btn-primary text-light" style="padding: 0px 4px;" href="add-branch.php">+ New</a></h2>
         </div>
         <!-- SEARCH BAR -->
         <div class="container">

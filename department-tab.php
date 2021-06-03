@@ -76,7 +76,7 @@
         </nav>
         <!-- TITLE -->
         <div class="text-center">
-            <h2 class="p-5">DEPARTMENT</h2>
+            <h2 class="p-5">DEPARTMENT  <a class="btn btn-primary text-light" style="padding: 0px 4px;" href="add-dept.php">+ New</a></h2>
         </div>
         <!-- SEARCH BAR -->
         <div class="container">

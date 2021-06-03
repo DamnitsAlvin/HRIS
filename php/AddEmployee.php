@@ -1,12 +1,11 @@
 <?php
     require_once('conn.php');
-    
-    $emp_id = $_GET["id"];
+
     $first_name = $_POST["fname"];
     $last_name = $_POST["lname"];
     $middle_name = $_POST["mname"];
     $address = $_POST["address"];
-    $sex = $_POST["optradio"];
+    $sex = $_POST["sex"];
     $date_of_birth = $_POST["dob"];
     $place_of_birth = $_POST["pob"];
     $contact_number = $_POST["contact"];
@@ -37,8 +36,8 @@
     $assoc = $result->fetch_assoc();
     $manager_id = $assoc["MANAGER_ID"];
 
-    
-    $stmt = $conn->prepare("UPDATE employees SET FNAME=?, MNAME=?, LNAME=?, ADDRESS=?, SEX=?, DOB=?, PLACE_OF_BIRTH=?, CONTACT_NUM=?, CIVIL_STATUS=?, POSITION=?, DEPT_ID=?, DIV_ID=?, WORK_STATUS=?, HIRED_DATE=?, MANAGER_ID=?, SALARY=?, COMMISSION=? WHERE EMP_ID = $emp_id");
+
+    $stmt = $conn->prepare("INSERT INTO employees (FNAME, MNAME, LNAME, ADDRESS, SEX, DOB, PLACE_OF_BIRTH, CONTACT_NUM, CIVIL_STATUS, POSITION, DEPT_ID, DIV_ID, WORK_STATUS, HIRED_DATE, MANAGER_ID, SALARY, COMMISSION) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssssssssiissiii", $first_name, $middle_name, $last_name, $address, $sex, $date_of_birth, $place_of_birth, $contact_number, $civil_status, $position, $department_id, $branch_id, $work_status, $hired_date, $manager_id, $salary, $commission);
     $stmt->execute();
     $stmt->close();
