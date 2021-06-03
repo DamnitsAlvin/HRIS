@@ -20,9 +20,61 @@ session_start();
 <body onload="showBranch()">
     <div class="container-fluid wrapper">
         <!-- NAVBAR -->
-        <?php
-            include 'header.php';
-        ?>
+        <nav class="navbar navbar-expand-md navbar-light mb-2">
+            <div class="container-fluid">
+                <a href="index.php" class="navbar-brand mr-5">
+                    <img src="logo.png" width="" height="" class="navlogo" alt="" loading="lazy" >
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse"
+                data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>    
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="employee-tab.php">Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle text-light active" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Utilities
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item " href="branches-tab.php">Branches</a>
+                                <a class="dropdown-item" href="department-tab.php">Departments</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-light " href="users_tab.php">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle text-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Reports
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item " href="reports.php">List of Employees</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Welcome,  <?php
+                                echo $_SESSION["username"];
+                                //substr(ucfirst(strtolower($_SESSION["username"])), 0 , strpos(ucfirst(strtolower($_SESSION["username"])), " "))
+                            ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                             <a class="dropdown-item" <?php echo 'href="php/pdf.php?empId='.$_SESSION['id'].'"' ?>>Profile</a> <!-- just show pdf here -->
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="php/logout.php">Log Out</a>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
+            </div>    
+        </nav>
         <!-- TITLE -->
         <div class="text-center">
             <h2 class="p-5">BRANCHES  <a class="btn btn-primary text-light" style="padding: 0px 4px;" href="add-branch.php">+ New</a></h2>
