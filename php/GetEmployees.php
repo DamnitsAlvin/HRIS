@@ -26,7 +26,7 @@
                             <div class='emp-tab-buttons text-center'>
                                 <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button>
                                 <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button>
-                                <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>print</i> print</button>
+                                <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px' onClick='toPDF($row[EMP_ID])'>print</i> print</button>
                             </div>
                         </td>
                     </tr>";

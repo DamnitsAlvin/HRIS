@@ -115,3 +115,9 @@ function prev()
     }
     showEmployees('');
 }
+
+function toPDF(empid){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET","php/pdf.php?empId="+empid, true);
+    xmlhttp.send();
+}
