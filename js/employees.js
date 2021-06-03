@@ -55,6 +55,7 @@ function showPageLinks(lim)
         if(this.readyState == 4 && this.status == 200)
         {
             document.getElementById("pagelinks").innerHTML = this.responseText;
+            pages = document.getElementsByClassName("page-link");
             total_pages = pages.length - 2;
         }
     };
@@ -117,7 +118,10 @@ function prev()
 }
 
 function toPDF(empid){
+    console.log("clicked!");
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET","php/pdf.php?empId="+empid, true);
+    console.log("done 1");
     xmlhttp.send();
+    console.log("done 2");
 }

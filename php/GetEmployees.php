@@ -24,15 +24,9 @@
                         <td>$row[WORK_STATUS]</td>
                         <td>
                             <div class='emp-tab-buttons text-center'>
-<<<<<<< HEAD
-                                <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button>
-                                <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button>
-                                <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px' onClick='toPDF($row[EMP_ID])'>print</i> print</button>
-=======
                                 <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button>   
                                 <a href='update-employee.php?id=$row[EMP_ID]'><button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button></a>
-                                <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px' onClick='toPDF($row[EMP_ID])'>print</i> print</button>
->>>>>>> 4b8ed63c4463cb0100996f163df0e1c46a612432
+                                <button class='btn btn-primary text-light' onclick='toPDF($row[EMP_ID])'> <i class='material-icons' style='font-size:16px'>print</i> print</button>
                             </div>
                         </td>
                     </tr>";
