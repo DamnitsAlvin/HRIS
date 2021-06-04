@@ -28,8 +28,8 @@
                  <td>'.$row["DEPT_HEAD"].'</td>
                  <td>
                      <div class="emp-tab-buttons text-center">
+                         <a href="update-dept.php?id='.$row['DEPT_ID'].'"><button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit </button></a>
                          <button class="btn btn-primary text-light" onclick="deletehandler('.$row["DEPT_ID"].')" > <i class="material-icons" style="font-size:16px;color:white">delete</i> delete</button>
-                         <button class="btn btn-primary text-light" onclick="edithandler('.$row["DEPT_ID"].')"> <i class="material-icons" style="font-size:16px">edit</i> edit</button>
                      </div>
                  </td>
               </tr>';

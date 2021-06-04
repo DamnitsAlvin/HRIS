@@ -32,7 +32,7 @@
                         <td>
                             <div class='emp-tab-buttons text-center'>
                                 <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button>
-                                <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button>
+                                <a href='update-users.php?id=$row[USER_ID]'><button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button></a>
                                 <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>delete</i> delete</button>
                             </div>
                         </td>

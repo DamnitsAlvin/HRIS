@@ -1,10 +1,22 @@
+<?php
+    session_start();
+    require_once ('php/conn.php');
+
+    if(isset($_GET["id"]))
+    {
+        $id = $_GET["id"];
+        $sql = "SELECT * FROM users WHERE USER_ID = $id";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRIS | Update Branch</title>
+    <title>HRIS | Update Users</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="styles.css">
@@ -69,38 +81,38 @@
             <div class="row">
                 <div class="d-flex flex-column mx-auto w-100 pb-5">
                     <div class="text-center">
-                        <h2 class="p-5">EDIT BRANCH</h2>
+                        <h2 class="p-5">EDIT USERS</h2>
                     </div>
-                    <form id="add-employee-form">
+                    <form id="add-employee-form" action=<?php echo 'php/EditUser.php?id='.$id;?> method="POST">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="branch-name">Branch Name:</label>
+                                    <label for="firstname">Account Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="branch-name">
+                                    <input type="text" class="form-control border-secondary" id="accname" name="accname" value="<?php echo $data['ACC_NAME'];?>">
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="adress">Address:</label>
+                                    <label for="username">Username:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="address">
+                                    <input type="text" class="form-control border-secondary" id="username" name="username" value="<?php echo $data['USERNAME'];?>">
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="branch-manager">Branch Manager:</label>
+                                    <label for="role">Role:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="branch-manager">
+                                    <input type="text" class="form-control border-secondary" id="role" name="role" value="<?php echo $data['ROLE'];?>">
                                 </div>
                             </div>
                         </div>

@@ -8,9 +8,9 @@
     {
         while($row = $result->fetch_assoc())
         {
-            if(isset($data["MANAGER_ID"]))
+            if(isset($data["MANAGER_ID"]) || isset($data["DIV_MANAGER"]))
             {
-                $selected = ($data["MANAGER_ID"] == $row["MANAGER_ID"]) ? 'selected' : null;
+                $selected = ($data["MANAGER_ID"] == $row["MANAGER_ID"]) || ($data["DIV_MANAGER"] == $row["MANAGER_ID"]) ? 'selected' : null;
             }
             echo "<option $selected>$row[Manager_Name]</option>";
         }

@@ -1,10 +1,23 @@
+<?php
+    session_start();
+    require_once ('php/conn.php');
+
+    if(isset($_GET["id"]))
+    {
+        $id = $_GET["id"];
+        $sql = "SELECT * FROM department WHERE DEPT_ID = $id";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRIS | Update Users</title>
+    <title>HRIS | Update Department</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="styles.css">
@@ -69,16 +82,16 @@
             <div class="row">
                 <div class="d-flex flex-column mx-auto w-100 pb-5">
                     <div class="text-center">
-                        <h2 class="p-5">EDIT USERS</h2>
+                        <h2 class="p-5">EDIT DEPARTMENT</h2>
                     </div>
-                    <form id="add-employee-form">
+                    <form id="add-employee-form" action=<?php echo 'php/EditDepartment.php?id='.$id;?> method="POST">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="firstname">First Name:</label>
+                                    <label for="department-name">Department Name:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="firstname">
+                                    <input type="text" class="form-control border-secondary" id="department-name" name="deptname" value="<?php echo $data['DEPT_NAME'];?>">
                                 </div>
                             </div>
                         </div>
@@ -86,43 +99,21 @@
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="lastname">Last Name:</label>
+                                    <label for="description">Description:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="lastname">
+                                    <input type="text" class="form-control border-secondary" id="description" name="desc" value="<?php echo $data['DESCRIPTION'];?>">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="middlename">Middle Name:</label>
+                                    <label for="department-head">Department Head:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="middlename">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="add-emp-form-group p-2">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="username">User Name:</label>
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="username">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="add-emp-form-group p-2">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-4 px-5 d-flex justify-content-end">
-                                    <label for="role">Role:</label>
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="role">
+                                    <input type="text" class="form-control border-secondary" id="department-head" name="depthead" value="<?php echo $data['DEPT_HEAD'];?>">
                                 </div>
                             </div>
                         </div>

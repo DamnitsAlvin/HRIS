@@ -90,7 +90,7 @@
                     <div class="text-center">
                         <h2 class="p-5">EDIT EMPLOYEE</h2>
                     </div>
-                    <form action=<?php echo 'php/EditEmployee.php?id='.$id?> method="POST" id="add-employee-form">
+                    <form action=<?php echo 'php/EditEmployee.php?id='.$id;?> method="POST" id="add-employee-form">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">

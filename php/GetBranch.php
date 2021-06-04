@@ -28,12 +28,12 @@
              <tr>
                  <td>'.$row['DIV_ID'].'</td>
                  <td>'.$row['DIV_NAME'].'</td>
-                 <td>'.$row['LOCATION'].'Pasay</td>
+                 <td>'.$row['LOCATION'].'</td>
                  <td>'.$managername['Manager_Name'].'</td>
                  <td>
                      <div class="emp-tab-buttons text-center">
                          <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
-                         <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit </button>
+                         <a href="update-branch.php?id='.$row['DIV_ID'].'"><button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit </button></a>
                         <a href="php/pdfBranch.php?branchId='.$row['DIV_ID'].'" > <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button></a>
                      </div>
                  </td>
