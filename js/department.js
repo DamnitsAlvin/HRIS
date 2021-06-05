@@ -91,7 +91,16 @@ function showDepartment(page)
 
 function edithandler(num){
     console.log("edit:" +num);
+   
 }
 function deletehandler(num){
-    console.log("delete: "+num);
+    alert("This is an alert");
+    if(confirm("Are you sure you want to delete department_id?"+num)){
+        console.log("changed to delete: "+num);
+        
+    }
+    else{
+        console.log("Swoooosh!");
+    }
+    
 }
