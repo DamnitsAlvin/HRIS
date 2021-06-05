@@ -94,10 +94,18 @@ function edithandler(num){
    
 }
 function deletehandler(num){
-    alert("This is an alert");
     if(confirm("Are you sure you want to delete department_id?"+num)){
         console.log("changed to delete: "+num);
-        
+        var xmlhttp = new XMLHttpRequest(); 
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status==200){
+                alert(this.response);
+                showDepartment();
+            }
+        }
+        xmlhttp.open("GET", "php/DeleteIdentity.php?Id="+num+"&cat=A", true); 
+        xmlhttp.send();
+       
     }
     else{
         console.log("Swoooosh!");
