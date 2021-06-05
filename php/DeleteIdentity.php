@@ -5,11 +5,11 @@
     
     if($_GET["cat"]=="A"){
         $table = "department";
-        $criteria = "DEPT_ID=".$ID;
+        $criteria = "DEPT_ID=$ID";
     }
     else{
         $table = "users"; 
-        $criteria = "USER_ID=".$ID;
+        $criteria = "USER_ID= $ID";
     }
 
     $sql = "DELETE FROM $table where $criteria"; 
@@ -17,7 +17,7 @@
         echo "Records was deleted  👎";
     }
     else{
-        echo "There was an error"; 
+        echo "There was an error🤕"; 
     }
 
 ?>
