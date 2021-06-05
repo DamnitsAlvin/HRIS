@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `comphub_hrdb`
+-- 
 --
 
 -- --------------------------------------------------------
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `department`
 --
-
+DROP DATABASE HRDB;
 CREATE DATABASE IF NOT EXISTS HRDB;
 USE HRDB; 
 
@@ -243,7 +243,7 @@ ALTER TABLE `division`
 --
 ALTER TABLE `employees`
   ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`MANAGER_ID`) REFERENCES `managers` (`MANAGER_ID`),
-  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`DEPT_ID`) REFERENCES `department` (`DEPT_ID`),
+  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`DEPT_ID`) REFERENCES `department` (`DEPT_ID`) ON DELETE CASCADE,
   ADD CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`DIV_ID`) REFERENCES `division` (`DIV_ID`);
 
 --

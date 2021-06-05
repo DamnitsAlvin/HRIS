@@ -94,7 +94,7 @@ function edithandler(num){
    
 }
 function deletehandler(num){
-    if(confirm("Are you sure you want to delete department_id?"+num)){
+    if(confirm("Are you sure you want to delete department_id "+num+"?")){
         console.log("changed to delete: "+num);
         var xmlhttp = new XMLHttpRequest(); 
         xmlhttp.onreadystatechange = function(){
@@ -108,7 +108,7 @@ function deletehandler(num){
        
     }
     else{
-        console.log("Swoooosh!");
+        alert("You did the right choice! 👍");
     }
     
 }

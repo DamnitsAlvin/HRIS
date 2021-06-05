@@ -67,7 +67,22 @@ function edithandler(num){
     console.log("edit:" +num);
 }
 function deletehandler(num){
-    console.log("delete: "+num);
+    if(confirm("Are you sure you want to delete User_id "+num+"?")){
+        var xmlhttp = new XMLHttpRequest(); 
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status==200){
+                alert(this.response);
+                showDepartment();
+            }
+        }
+        xmlhttp.open("GET", "php/DeleteIdentity.php?Id="+num+"&cat=B", true); 
+        xmlhttp.send();
+       
+    }
+    else{
+        alert("You did the right choice! 👍");
+    }
+    
 }
 function nexthandler(){
     if(curPage == total_pages){
