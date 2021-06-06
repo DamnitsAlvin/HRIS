@@ -25,10 +25,10 @@
             while($row = $result->fetch_assoc())
             {
                 echo " <tr>
-                        <td>$row[USER_ID]</td>
-                        <td>$row[ACC_NAME]</td>
-                        <td>$row[USERNAME]</td>
-                        <td>$row[ROLE]</td>
+                        <td>".htmlspecialchars($row['USER_ID'], ENT_QUOTES, 'UTF-8')."</td>
+                        <td>".htmlspecialchars($row['ACC_NAME'], ENT_QUOTES, 'UTF-8')."</td>
+                        <td>".htmlspecialchars($row['USERNAME'], ENT_QUOTES, 'UTF-8')."</td>
+                        <td>".htmlspecialchars($row['ROLE'], ENT_QUOTES, 'UTF-8')."</td>
                         <td>
                             <div class='emp-tab-buttons text-center'>
                                 <a href= 'php/pdf.php?empId=$row[EMP_ID]&mode=I' target='_blank'><button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button></a>

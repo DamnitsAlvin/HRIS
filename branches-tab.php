@@ -61,7 +61,7 @@ session_start();
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Welcome,  <?php
-                                echo $_SESSION["username"];
+                                echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
                                 //substr(ucfirst(strtolower($_SESSION["username"])), 0 , strpos(ucfirst(strtolower($_SESSION["username"])), " "))
                             ?>
                         </a>

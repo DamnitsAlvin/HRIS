@@ -15,13 +15,14 @@
         {
             while($row = $result->fetch_assoc())
             {
+                $name = $row["FNAME"].' '.$row["MNAME"].' '.$row["LNAME"];
                 echo "<tr>
-                        <td>$row[EMP_ID]</td>
-                        <td>$row[FNAME] $row[MNAME] $row[LNAME]</td>
+                        <td>".htmlspecialchars($row['EMP_ID'], ENT_QUOTES, 'UTF-8')."</td>
+                        <td>".htmlspecialchars($name, ENT_QUOTES, 'UTF-8')."</td>
                         <td>020202</td>
-                        <td>$row[MANAGER_ID]</td>
-                        <td>$row[DEPT_ID]</td>
-                        <td>$row[WORK_STATUS]</td>
+                        <td>".htmlspecialchars($row['MANAGER_ID'], ENT_QUOTES, 'UTF-8')."</td>
+                        <td>".htmlspecialchars($row['DEPT_ID'], ENT_QUOTES, 'UTF-8')."</td>
+                        <td>".htmlspecialchars($row['WORK_STATUS'], ENT_QUOTES, 'UTF-8')."</td>
                         <td>
                             <div class='emp-tab-buttons text-center'>
                                 <a href= 'php/pdf.php?empId=$row[EMP_ID]&mode=I' target='_blank'><button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button> </a>  
