@@ -23,9 +23,9 @@
          while($row = mysqli_fetch_assoc($data)){
              echo '
              <tr>
-                 <td>'.$row["DEPT_ID"].'</td>
-                 <td>'.$row["DEPT_NAME"].'</td>
-                 <td>'.$row["DEPT_HEAD"].'</td>
+                 <td>'.htmlspecialchars($row["DEPT_ID"], ENT_QUOTES, 'UTF-8').'</td>
+                 <td>'.htmlspecialchars($row["DEPT_NAME"], ENT_QUOTES, 'UTF-8').'</td>
+                 <td>'.htmlspecialchars($row["DEPT_HEAD"], ENT_QUOTES, 'UTF-8').'</td>
                  <td>
                      <div class="emp-tab-buttons text-center">
                          <a href="update-dept.php?id='.$row['DEPT_ID'].'"><button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit </button></a>

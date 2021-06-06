@@ -26,10 +26,10 @@
             
              echo '
              <tr>
-                 <td>'.$row['DIV_ID'].'</td>
-                 <td>'.$row['DIV_NAME'].'</td>
-                 <td>'.$row['LOCATION'].'</td>
-                 <td>'.$managername['Manager_Name'].'</td>
+                 <td>'.htmlspecialchars($row['DIV_ID'], ENT_QUOTES, 'UTF-8').'</td>
+                 <td>'.htmlspecialchars($row['DIV_NAME'], ENT_QUOTES, 'UTF-8').'</td>
+                 <td>'.htmlspecialchars($row['LOCATION'], ENT_QUOTES, 'UTF-8').'</td>
+                 <td>'.htmlspecialchars($managername['Manager_Name'], ENT_QUOTES, 'UTF-8').'</td>
                  <td>
                      <div class="emp-tab-buttons text-center">
                          <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
