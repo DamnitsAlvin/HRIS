@@ -32,9 +32,9 @@
                  <td>'.$managername['Manager_Name'].'</td>
                  <td>
                      <div class="emp-tab-buttons text-center">
-                         <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button>
+                        <a href="php/pdfBranch.php?branchId='.$row['DIV_ID'].'&mode=I" target="_blank"> <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px;color:white">info</i> view</button></a>
                          <a href="update-branch.php?id='.$row['DIV_ID'].'"><button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">edit</i> edit </button></a>
-                        <a href="php/pdfBranch.php?branchId='.$row['DIV_ID'].'" > <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button></a>
+                        <a href="php/pdfBranch.php?branchId='.$row['DIV_ID'].'&mode=D" > <button class="btn btn-primary text-light"> <i class="material-icons" style="font-size:16px">print</i> print</button></a>
                      </div>
                  </td>
              </tr>';

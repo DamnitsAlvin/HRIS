@@ -31,7 +31,7 @@
                         <td>$row[ROLE]</td>
                         <td>
                             <div class='emp-tab-buttons text-center'>
-                                <button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button>
+                                <a href= 'php/pdf.php?empId=$row[EMP_ID]&mode=I' target='_blank'><button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px;color:white'>info</i> view</button></a>
                                 <a href='update-users.php?id=$row[USER_ID]'><button class='btn btn-primary text-light'> <i class='material-icons' style='font-size:16px'>edit</i> edit</button></a>
                                 <button class='btn btn-primary text-light'  onclick='deletehandler(".$row['USER_ID'].")'> <i class='material-icons' style='font-size:16px;color:white'>delete</i> delete</button>
                             </div>

@@ -3,6 +3,7 @@
     require "conn.php"; 
 
     $mpdf = new \Mpdf\Mpdf();
+    $mode = $_GET["mode"];
 
     $BranchId = $_GET["branchId"]; 
     $result = mysqli_query($conn, "SELECT * FROM division WHERE DIV_ID = $BranchId"); 
@@ -19,7 +20,7 @@
     
 
     $mpdf->WriteHTML($data);
-    $mpdf->Output("document.pdf", "D");
+    $mpdf->Output("document.pdf", $mode);
 
 
 ?>

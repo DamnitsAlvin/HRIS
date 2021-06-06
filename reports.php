@@ -29,7 +29,7 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-light active" href="employee-tab.php">Employees</a>
+                        <a class="nav-link text-light " href="employee-tab.php">Employees</a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
@@ -43,7 +43,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-light " href="users_tab.php">Users</a>
+                      <a class="nav-link text-light active " href="users_tab.php">Users</a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">

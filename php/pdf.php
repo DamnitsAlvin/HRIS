@@ -3,6 +3,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 require "conn.php"; 
 
 $empId = $_GET["empId"];
+$mode = $_GET["mode"];
 $mpdf = new \Mpdf\Mpdf();
 
 $result_db = mysqli_query($conn,"SELECT * FROM employees where EMP_ID = $empId");
@@ -36,5 +37,5 @@ $data .= "<strong>Salary: </strong>". $row_db[16]. "<br>";
 $data .= "<strong>Commission: </strong>". $row_db[17]. "<br>";
 
 $mpdf->WriteHTML($data); 
-$mpdf->Output("document.pdf", "D");
+$mpdf->Output("document.pdf",$mode);
 ?>
