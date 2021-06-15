@@ -1,3 +1,8 @@
+const accname = document.getElementById("accname");
+const username = document.getElementById("username");
+const role = document.getElementById("role");
+var error_containers = document.getElementsByClassName("error-container");
+
 curPage= 1; 
 total_pages=5
 
@@ -104,3 +109,41 @@ function previoushandler(){
     showBranch(curPage);
 }
 
+
+function validateForm()
+{
+    var errors = 0;
+
+    if(accname.value == "")
+    {
+        setError("accname", "Account name cannot be blank");
+        errors++;
+    }
+    if(username.value == "")
+    {
+        setError("username", "Username cannot be blank");
+        errors++;
+    }
+    if(role.value == "")
+    {
+        setError("role", "Role cannot be blank");
+        errors++;
+    }
+
+    return errors < 1;
+}
+
+
+function setError(str, msg)
+{
+    document.getElementById(str + "-error").innerHTML = msg;
+}
+
+
+function resetErrors()
+{
+    for(i = 0; i < error_containers.length; i++)
+    {
+        error_containers[i].innerHTML = "";
+    }
+}

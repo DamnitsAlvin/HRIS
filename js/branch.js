@@ -1,3 +1,7 @@
+const branchname = document.getElementById("branch-name");
+const address = document.getElementById("address");
+var error_containers = document.getElementsByClassName("error-container");
+
 curPage= 1; 
 total_pages=5
 
@@ -89,3 +93,37 @@ function previoushandler(){
     showBranch(curPage);
 }
 
+
+function validateForm()
+{
+    var errors = 0;
+
+    if(branchname.value == "")
+    {
+        setError("branchname", "Branch name cannot be blank");
+        errors++;
+    }
+
+    if(address.value == "")
+    {
+        setError("address", "Address cannot be blank");
+        errors++;
+    }
+
+    return errors < 1;
+}
+
+
+function setError(str, msg)
+{
+    document.getElementById(str + "-error").innerHTML = msg;
+}
+
+
+function resetErrors()
+{
+    for(i = 0; i < error_containers.length; i++)
+    {
+        error_containers[i].innerHTML = "";
+    }
+}

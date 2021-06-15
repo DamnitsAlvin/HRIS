@@ -1,3 +1,8 @@
+const deptname = document.getElementById("department-name");
+const deptdesc = document.getElementById("description");
+const depthead = document.getElementById("department-head");
+var error_containers = document.getElementsByClassName("error-container");
+
 curPage= 1; 
 total_pages=5
 
@@ -111,4 +116,45 @@ function deletehandler(num){
         alert("You did the right choice! 👍");
     }
     
+}
+
+
+function validateForm()
+{
+    var errors = 0;
+
+    if(deptname.value == "")
+    {
+        setError("deptname", "Department name cannot be blank");
+        errors++;
+    }
+
+    if(deptdesc.value == "")
+    {
+        setError("deptdesc", "Description cannot be blank");
+        errors++;
+    }
+
+    if(depthead.value == "")
+    {
+        setError("depthead", "Department head cannot be blank");
+        errors++;
+    }
+
+    return errors < 1;
+}
+
+
+function setError(str, msg)
+{
+    document.getElementById(str + "-error").innerHTML = msg;
+}
+
+
+function resetErrors()
+{
+    for(i = 0; i < error_containers.length; i++)
+    {
+        error_containers[i].innerHTML = "";
+    }
 }

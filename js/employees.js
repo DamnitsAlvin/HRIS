@@ -1,6 +1,24 @@
+const fname = document.getElementById("firstname");
+const lname = document.getElementById("lastname");
+const mname = document.getElementById("middlename");
+const address = document.getElementById("address");
+const dob = document.getElementById("date-of-birth");
+const pob = document.getElementById("place-of-birth");
+const contact = document.getElementById("contact-number");
+const civilstatus = document.getElementById("civilstatus");
+const position = document.getElementById("position");
+const department = document.getElementById("department");
+const branch = document.getElementById("branch");
+const workstatus = document.getElementById("work-status");
+const hireddate = document.getElementById("hired-date");
+const manager = document.getElementById("manager");
+const salary = document.getElementById("salary");
+const commission = document.getElementById("commission");
+
 var curr_page = 1;
 var total_pages = 5;
 var limit;
+var error_containers = document.getElementsByClassName("error-container");
 
 function showEmployees(str)
 {
@@ -124,4 +142,121 @@ function toPDF(empid){
     console.log("done 1");
     xmlhttp.send();
     console.log("done 2");
+}
+
+
+function validateForm()
+{
+    var errors = 0;
+
+    if(fname.value == "")
+    {
+        setError("fname", "First name cannot be blank");
+        errors++;
+    }
+
+    if(lname.value == "")
+    {
+        setError("lname", "Last name cannot be blank");
+        errors++;
+    }
+
+    if(mname.value == "")
+    {
+        setError("mname", "Middle name cannot be blank");
+        errors++;
+    }
+
+    if(address.value == "")
+    {
+        setError("address", "Address name cannot be blank");
+        errors++;
+    }
+
+    if(pob.value == "")
+    {
+        setError("pob", "Place of birth cannot be blank");
+        errors++;
+    }
+
+    if(dob.value == "")
+    {
+        setError("dob", "Please pick a date");
+        errors++;
+    }
+    
+    if(contact.value == "")
+    {
+        setError("contact", "Contact cannot be blank");
+        errors++;
+    }
+
+    if(position.value == "")
+    {
+        setError("position", "Position cannot be blank");
+        errors++;
+    }
+
+    if(department.value == "None")
+    {
+        setError("department", "Please select a department");
+        errors++;
+    }
+
+    if(branch.value == "None")
+    {
+        setError("branch", "Please select a branch");
+        errors++;
+    }
+
+    if(hireddate.value == "")
+    {
+        setError("hireddate", "Please pick a date");
+        errors++;
+    }
+
+    if(manager.value == "None")
+    {
+        setError("manager", "Please select a manager");
+        errors++;
+    }
+
+    if(salary.value == "")
+    {
+        setError("salary", "Salary cannot be blank");
+        errors++;
+    }
+    else if(isNaN(salary.value))
+    {
+        setError("salary", "Please enter a valid number");
+        errors++;
+    }
+
+    if(commission.value == "")
+    {
+        setError("commission", "Commission cannot be blank");
+        errors++;
+    }
+    else if(isNaN(commission.value))
+    {
+        setError("commission", "Please enter a valid number");
+        errors++;
+    }
+
+    return false;
+}
+
+
+function setError(str, msg)
+{
+    document.getElementById(str + "-error").innerHTML = msg;
+}
+
+
+function resetErrors()
+{
+    for(i = 0; i < error_containers.length; i++)
+    {
+        error_containers[i].innerHTML = "";
+    }
 }
