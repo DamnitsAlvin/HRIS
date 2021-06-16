@@ -90,7 +90,7 @@
                     <div class="text-center">
                         <h2 class="p-5">EDIT EMPLOYEE</h2>
                     </div>
-                    <form action=<?php echo 'php/EditEmployee.php?id='.$id;?> method="POST" id="add-employee-form">
+                    <form action=<?php echo 'php/EditEmployee.php?id='.$id;?> method="POST" id="add-employee-form" onsubmit="return validateForm()" onreset="resetErrors()">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
@@ -98,6 +98,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="firstname" name="fname" value="<?php echo $data['FNAME']?>">
+                                    <div class="error-message">
+                                        <small id="fname-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -109,6 +112,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="lastname" name="lname" value="<?php echo $data['LNAME']?>">
+                                    <div class="error-message">
+                                        <small id="lname-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -120,6 +126,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="middlename" name="mname" value="<?php echo $data['MNAME']?>">
+                                    <div class="error-message">
+                                        <small id="mname-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -131,6 +140,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="address" name="address" value="<?php echo $data['ADDRESS']?>">
+                                    <div class="error-message">
+                                        <small id="address-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -154,6 +166,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="date" class="form-control border-secondary" id="date-of-birth" name="dob" value=<?php echo $data['DOB']?>>
+                                    <div class="error-message">
+                                        <small id="dob-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -165,6 +180,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="place-of-birth" name="pob" value="<?php echo $data['PLACE_OF_BIRTH']?>">
+                                    <div class="error-message">
+                                        <small id="pob-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -176,6 +194,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="contact-number" name="contact" value=<?php echo $data['CONTACT_NUM']?>>
+                                    <div class="error-message">
+                                        <small id="contact-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -192,6 +213,9 @@
                                         <option <?php echo ($data['CIVIL_STATUS'] == "WIDOWED") ? 'selected' : null; ?>>Widowed</option>
                                         <option <?php echo ($data['CIVIL_STATUS'] == "DIVORCED") ? 'selected' : null; ?>>Divorced</option>
                                     </select>
+                                    <div class="error-message">
+                                        <small id="civilstatus-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -203,6 +227,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="position" name="position" value="<?php echo $data['POSITION']?>">
+                                    <div class="error-message">
+                                        <small id="position-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -214,8 +241,12 @@
                                 </div>
                                 <div class="col">
                                     <select class="form-control border-secondary" name="department" id="department">
+                                    <option>None</option>
                                         <?php require_once('php/DepartmentsDropdown.php');?>
                                     </select>
+                                    <div class="error-message">
+                                        <small id="department-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -227,8 +258,12 @@
                                 </div>
                                 <div class="col">
                                     <select class="form-control border-secondary" name="branch" id="branch">
+                                        <option>None</option>
                                         <?php require_once('php/BranchDropwdown.php');?>
                                     </select>
+                                    <div class="error-message">
+                                        <small id="branch-error" class="error-container" style="color:red;"></small>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -244,6 +279,9 @@
                                         <option <?php echo ($data['WORK_STATUS'] == "PART-TIME") ? 'selected' : null; ?>>PART-TIME</option>
                                         <option <?php echo ($data['WORK_STATUS'] == "INTERN") ? 'selected' : null; ?>>INTERN</option>
                                     </select>
+                                    <div class="error-message">
+                                        <small id="workstatus-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -255,6 +293,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="date" class="form-control border-secondary" id="hired-date" name="hireddate" value=<?php echo $data['HIRED_DATE']?>>
+                                    <div class="error-message">
+                                        <small id="hireddate-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -268,6 +309,9 @@
                                     <select class="form-control border-secondary" name="manager" id="manager">
                                         <?php require_once('php/ManagersDropdown.php');?>
                                     </select>
+                                    <div class="error-message">
+                                        <small id="manager-error" class="error-container" style="color:red;"></small>
+                                    </div>  
                                 </div>
                             </div>
                         </div>
@@ -279,6 +323,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="salary" name="salary" value=<?php echo $data['SALARY']?>>
+                                    <div class="error-message">
+                                        <small id="salary-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -290,6 +337,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="commission" name="commission" value=<?php echo $data['COMMISSION']?>>
+                                    <div class="error-message">
+                                        <small id="commission-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -307,6 +357,7 @@
     </div>
 
 
+    <script src="./js/employees.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

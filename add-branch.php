@@ -65,7 +65,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                              <a class="dropdown-item" target="_blank" <?php echo 'href="php/pdf.php?empId='.$_SESSION['id'].'&mode=I"' ?>>Profile</a> <!-- just show pdf here -->
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="index.php">Log Out</a>
+                            <a class="dropdown-item" href="php/logout.php">Log Out</a>
                         </div>
                     </li>
                   </ul>
@@ -79,7 +79,7 @@
                     <div class="text-center">
                         <h2 class="p-5">ADD BRANCH</h2>
                     </div>
-                    <form id="add-employee-form" action="php/AddBranch.php" method="POST">
+                    <form id="add-employee-form" action="php/AddBranch.php" method="POST" onsubmit="return validateForm()" onreset="resetErrors()">
                         <div class="add-emp-form-group p-2">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4 px-5 d-flex justify-content-end">
@@ -87,6 +87,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="branch-name" name="branchname">
+                                    <div class="error-message">
+                                        <small id="branchname-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -98,6 +101,9 @@
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control border-secondary" id="address" name="address">
+                                    <div class="error-message">
+                                        <small id="address-error" class="error-container" style="color:red;"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +133,7 @@
         </div>
     </div>
 
-
+    <script src="./js/branch.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
