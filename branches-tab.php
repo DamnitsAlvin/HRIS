@@ -66,7 +66,7 @@ session_start();
                             ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <a class="dropdown-item" <?php echo 'href="php/pdf.php?empId='.$_SESSION['id'].'"' ?>>Profile</a> <!-- just show pdf here -->
+                             <a class="dropdown-item" target="_blank" <?php echo 'href="php/pdf.php?empId='.$_SESSION['id'].'&mode=I"' ?>>Profile</a> <!-- just show pdf here -->
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="php/logout.php">Log Out</a>
                         </div>

@@ -1,3 +1,8 @@
+<?php
+    session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,10 +57,13 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome, Lorem Ipsum
+                            Welcome,<?php
+                                echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
+                                //substr(ucfirst(strtolower($_SESSION["username"])), 0 , strpos(ucfirst(strtolower($_SESSION["username"])), " "))
+                            ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <a class="dropdown-item" href="wip.html">Profile</a> <!-- just show pdf here -->
+                             <a class="dropdown-item" target="_blank" <?php echo 'href="php/pdf.php?empId='.$_SESSION['id'].'&mode=I"' ?>>Profile</a> <!-- just show pdf here -->
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="php/logout.php">Log Out</a>
                         </div>
