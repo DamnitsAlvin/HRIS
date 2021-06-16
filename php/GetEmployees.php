@@ -5,7 +5,6 @@
     $curr_page = intval($_GET["page"]);
     $start = ($curr_page - 1) * $limit;
     
-
     if($limit >= 1)
     {
         $sql = "SELECT * FROM employees LIMIT $start, $limit";

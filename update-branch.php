@@ -31,7 +31,7 @@
     <div class="container-fluid wrapper">
         <nav class="navbar navbar-expand-md navbar-light mb-2">
             <div class="container-fluid">
-                <a href="index.php" class="navbar-brand mr-5">
+                <a href="employee-tab.php" class="navbar-brand mr-5">
                     <img src="logo.png" width="" height="" class="navlogo" alt="" loading="lazy" >
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -56,16 +56,6 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link text-light" href="users_tab.php">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle text-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Reports
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item " href="reports.php">List of Employees</a>
-                            </div>
-                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
