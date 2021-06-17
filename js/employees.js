@@ -14,6 +14,11 @@ const hireddate = document.getElementById("hired-date");
 const manager = document.getElementById("manager");
 const salary = document.getElementById("salary");
 const commission = document.getElementById("commission");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const usernameDiv = document.getElementById("username-div");
+const passwordDiv = document.getElementById("password-div");
+const pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
 var curr_page = 1;
 var total_pages = 5;
@@ -243,7 +248,24 @@ function validateForm()
         errors++;
     }
 
-    return false;
+    if(username.value == "")
+    {
+        setError("username", "Username cannot be blank");
+        errors++;
+    }
+
+    if(password.value == "")
+    {
+        setError("password", "Password cannot be blank");
+        errors++;
+    }
+    else if(!password.value.match(pass))
+    {
+        setError("password", "Password must be at least 6 characters and contain at least one numeric digit, one uppercase and one lowercase letter");
+        errors++;
+    }
+
+    return errors < 1;
 }
 
 
@@ -258,5 +280,23 @@ function resetErrors()
     for(i = 0; i < error_containers.length; i++)
     {
         error_containers[i].innerHTML = "";
+    }
+}
+
+
+function checkRole()
+{
+    if(position.value.toUpperCase() == "HR" || position.value.toUpperCase() == "HUMAN RESOURCE")
+    {
+        if(usernameDiv.style.display === "none" && passwordDiv.style.display ==="none")
+        {
+            usernameDiv.style.display = "block";
+            passwordDiv.style.display = "block";
+        }
+    }
+    else
+    {
+        usernameDiv.style.display = "none";
+        passwordDiv.style.display = "none";
     }
 }

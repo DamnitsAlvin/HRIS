@@ -206,7 +206,7 @@
                                     <label for="position">Position:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="position" name="position">
+                                    <input type="text" class="form-control border-secondary" id="position" name="position" onkeyup="checkRole()">
                                     <div class="error-message">
                                         <small id="position-error" class="error-container" style="color:red;"></small>
                                     </div>
@@ -320,6 +320,34 @@
                                     <input type="text" class="form-control border-secondary" id="commission" name="commission">
                                     <div class="error-message">
                                         <small id="commission-error" class="error-container" style="color:red;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-emp-form-group p-2" id="username-div" style="display: none;">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4 px-5 d-flex justify-content-end">
+                                    <label for="firstname">Username:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control border-secondary" id="username" name="username">
+                                    <div class="error-message">
+                                        <small id="username-error" class="error-container" style="color:red;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-emp-form-group p-2" id="password-div" style="display: none;">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4 px-5 d-flex justify-content-end">
+                                    <label for="firstname">Password:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control border-secondary" id="password" name="password">
+                                    <div class="error-message">
+                                        <small id="password-error" class="error-container" style="color:red;"></small>
                                     </div>
                                 </div>
                             </div>
