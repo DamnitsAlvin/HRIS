@@ -345,7 +345,7 @@
                                     <label for="firstname">Password:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="password" name="password">
+                                    <input type="password" class="form-control border-secondary" id="password" name="password">
                                     <div class="error-message">
                                         <small id="password-error" class="error-container" style="color:red;"></small>
                                     </div>

@@ -8,6 +8,16 @@
         $sql = "SELECT * FROM employees WHERE EMP_ID = $id";
         $result = $conn->query($sql);
         $data = $result->fetch_assoc();
+
+        $sql = "SELECT * FROM users WHERE EMP_ID = $id";
+        $result = $conn->query($sql);
+        
+        if($result->num_rows > 0)
+        {
+            $user_data = $result->fetch_assoc();
+            $admin_username = $user_data['USERNAME'];
+            $admin_password = $user_data['PASSWORD'];
+        }
     }
 
     $sql = "SELECT * FROM managers WHERE MANAGER_ID = $data[MANAGER_ID]";
@@ -27,7 +37,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="logo.png">
 </head>
-<body>
+<body onload="checkRole()">
     <div class="container-fluid wrapper">
     <nav class="navbar navbar-expand-md navbar-light mb-2">
             <div class="container-fluid">
@@ -216,7 +226,7 @@
                                     <label for="position">Position:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control border-secondary" id="position" name="position" value="<?php echo $data['POSITION']?>">
+                                    <input type="text" class="form-control border-secondary" id="position" name="position" value="<?php echo $data['POSITION']?>" onkeyup="checkRole()">
                                     <div class="error-message">
                                         <small id="position-error" class="error-container" style="color:red;"></small>
                                     </div>
@@ -329,6 +339,34 @@
                                     <input type="text" class="form-control border-secondary" id="commission" name="commission" value=<?php echo $data['COMMISSION']?>>
                                     <div class="error-message">
                                         <small id="commission-error" class="error-container" style="color:red;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-emp-form-group p-2" id="username-div" style="display: none;">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4 px-5 d-flex justify-content-end">
+                                    <label for="firstname">Username:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control border-secondary" id="username" name="username" value=<?php echo isset($admin_username) ? $admin_username : "";?>>
+                                    <div class="error-message">
+                                        <small id="username-error" class="error-container" style="color:red;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-emp-form-group p-2" id="password-div" style="display: none;">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4 px-5 d-flex justify-content-end">
+                                    <label for="firstname">Password:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="password" class="form-control border-secondary" id="password" name="password" value=<?php echo isset($admin_password) ? $admin_password : "";?>>
+                                    <div class="error-message">
+                                        <small id="password-error" class="error-container" style="color:red;"></small>
                                     </div>
                                 </div>
                             </div>

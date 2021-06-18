@@ -248,21 +248,24 @@ function validateForm()
         errors++;
     }
 
-    if(username.value == "")
+    if(position.value.toUpperCase() == "HR" || position.value.toUpperCase() == "HUMAN RESOURCE")
     {
-        setError("username", "Username cannot be blank");
-        errors++;
-    }
+        if(username.value == "")
+        {
+            setError("username", "Username cannot be blank");
+            errors++;
+        }
 
-    if(password.value == "")
-    {
-        setError("password", "Password cannot be blank");
-        errors++;
-    }
-    else if(!password.value.match(pass))
-    {
-        setError("password", "Password must be at least 6 characters and contain at least one numeric digit, one uppercase and one lowercase letter");
-        errors++;
+        if(password.value == "")
+        {
+            setError("password", "Password cannot be blank");
+            errors++;
+        }
+        else if(!password.value.match(pass))
+        {
+            setError("password", "Password must be at least 6 characters and contain at least one numeric digit, one uppercase and one lowercase letter");
+            errors++;
+        }
     }
 
     return errors < 1;

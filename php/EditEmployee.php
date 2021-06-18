@@ -1,10 +1,13 @@
 <?php
     require_once('conn.php');
     
-    $emp_id = $_GET["id"];
+    $emp_id = intval($_GET["id"]);
     $first_name = $_POST["fname"];
     $last_name = $_POST["lname"];
     $middle_name = $_POST["mname"];
+    $fullname = $first_name.' '.$middle_name.' '.$last_name;
+    $username = $_POST["username"];
+    $password = $_POST["password"];
     $address = $_POST["address"];
     $sex = $_POST["optradio"];
     $date_of_birth = $_POST["dob"];
@@ -16,6 +19,7 @@
     $hired_date = $_POST["hireddate"];
     $salary = intval($_POST["salary"]);
     $commission = intval($_POST["commission"]);
+    $last_id;
 
     $department_name = $_POST["department"];
     $sql = "SELECT DEPT_ID FROM department WHERE DESCRIPTION = '$department_name'";
@@ -42,6 +46,68 @@
     $stmt->bind_param("ssssssssssiissiii", $first_name, $middle_name, $last_name, $address, $sex, $date_of_birth, $place_of_birth, $contact_number, $civil_status, $position, $department_id, $branch_id, $work_status, $hired_date, $manager_id, $salary, $commission);
     $stmt->execute();
     $stmt->close();
-    header('location: ../employee-tab.php');
-    die();
+
+    if(strtoupper($position) == "MANAGER")
+    {
+        
+        $sql = "SELECT * FROM managers WHERE MANAGER_ID = $emp_id";
+        $result = $conn->query($sql);
+
+        if($result->num_rows < 1)
+        {
+            $stmt = $conn->prepare("INSERT INTO managers (MANAGER_ID, Manager_Name) VALUES (?, ?)");
+            $stmt->bind_param("is", $emp_id, $fullname);
+            $stmt->execute();
+            $stmt->close();
+            echo "<script>alert('new manager!');</script>";
+            header('location: ../employee-tab.php');
+            die();
+        }
+        else
+        {
+            header('location: ../employee-tab.php');
+            die();
+        }
+    }
+    else if(strtoupper($position) == "HR" || strtoupper($position) == "HUMAN RESOURCE")
+    {
+        $sql = "SELECT * FROM users WHERE EMP_ID = $emp_id";
+        $result = $conn->query($sql);
+
+        if(!$result->num_rows > 0)
+        {
+            $stmt = $conn->prepare("INSERT INTO users (ACC_NAME, USERNAME, PASSWORD, ROLE, EMP_ID) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssi", $fullname, $username, $password, $position, $emp_id);
+            $stmt->execute();
+            $stmt->close();
+            header('location: ../employee-tab.php');
+            die();
+        }
+        else
+        {
+            $stmt = $conn->prepare("UPDATE users SET ACC_NAME=?, USERNAME=?, PASSWORD=?, ROLE=? WHERE EMP_ID=?");
+            $stmt->bind_param("ssssi", $fullname, $username, $password, $position, $emp_id);
+            $stmt->execute();
+            $stmt->close();
+            header('location: ../employee-tab.php');
+            die();
+        }
+    }
+    else
+    {
+        //delete user/hr record if not hr anymore
+        $sql = "SELECT * FROM users WHERE EMP_ID = $emp_id";
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0)
+        {
+            $stmt = $conn->prepare("DELETE FROM users WHERE EMP_ID=?");
+            $stmt->bind_param("i", $emp_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        header('location: ../employee-tab.php');
+        die();
+    }
 ?>
