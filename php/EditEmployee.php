@@ -53,6 +53,19 @@
         $sql = "SELECT * FROM managers WHERE MANAGER_ID = $emp_id";
         $result = $conn->query($sql);
 
+        //if he is previously hr delete hr record
+        //delete user/hr record
+        $sql = "SELECT * FROM users WHERE EMP_ID = $emp_id";
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0)
+        {
+            $stmt = $conn->prepare("DELETE FROM users WHERE EMP_ID=?");
+            $stmt->bind_param("i", $emp_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
         if($result->num_rows < 1)
         {
             $stmt = $conn->prepare("INSERT INTO managers (MANAGER_ID, Manager_Name) VALUES (?, ?)");
@@ -95,7 +108,7 @@
     }
     else
     {
-        //delete user/hr record if not hr anymore
+        //delete user/hr record if position is not hr
         $sql = "SELECT * FROM users WHERE EMP_ID = $emp_id";
         $result = $conn->query($sql);
 
@@ -106,7 +119,7 @@
             $stmt->execute();
             $stmt->close();
         }
-
+        
         header('location: ../employee-tab.php');
         die();
     }
